@@ -4,108 +4,314 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Toy Topia</title>
-<link rel="stylesheet" href="style.css">
+
 <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#0d0d0d;
+color:white;
+}
+
+nav{
+background:#111;
+padding:20px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+position:sticky;
+top:0;
+z-index:1000;
+}
+
+nav h1{
+color:#00d9ff;
+font-size:32px;
+}
+
+.hero{
+height:80vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:center;
+padding:20px;
+background:linear-gradient(to right,#000,#1b1b1b);
+}
+
+.hero h2{
+font-size:55px;
+margin-bottom:20px;
+}
+
+.hero p{
+font-size:20px;
+color:#ccc;
+}
+
+.products{
+padding:60px 20px;
+}
+
+.products h2{
+text-align:center;
+font-size:42px;
+margin-bottom:40px;
+}
+
+.product-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+gap:25px;
+}
+
+.card{
+background:#1a1a1a;
+padding:15px;
+border-radius:15px;
+transition:0.3s;
+}
+
+.card:hover{
+transform:translateY(-8px);
+}
+
+.card img{
+width:100%;
+height:260px;
+object-fit:cover;
+border-radius:10px;
+}
+
+.card h3{
+margin-top:15px;
+font-size:22px;
+}
+
+.price{
+color:#00d9ff;
+font-size:22px;
+margin-top:10px;
+font-weight:bold;
+}
+
+.old{
+text-decoration:line-through;
+color:gray;
+margin-right:10px;
+}
+
+.buttons{
+display:flex;
+flex-direction:column;
+gap:10px;
+margin-top:20px;
+}
+
+.buy{
+padding:12px;
+border:none;
+background:#00d9ff;
+font-weight:bold;
+border-radius:8px;
+cursor:pointer;
+}
+
+.cod{
+padding:12px;
+border:none;
+background:#333;
+color:white;
+border-radius:8px;
+cursor:pointer;
+}
+
+footer{
+padding:20px;
+text-align:center;
+background:#111;
+margin-top:40px;
+}
+
+@media(max-width:768px){
+
+.hero h2{
+font-size:34px;
+}
+
+}
+
+</style>
 </head>
+
 <body>
 
-<header>
-  <nav>
-    <h1>Toy Topia</h1>
-    <ul>
-      <li><a href="#home">Home</a></li>
-      <li><a href="#products">Products</a></li>
-      <li><a href="#payment">Payments</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-  </nav>
-</header>
+<nav>
+<h1>Toy Topia</h1>
+</nav>
 
-<section class="hero" id="home">
-  <h2>Trending Toys & Gadgets</h2>
-  <p>Premium gadgets, bags, toys & accessories.</p>
-  <button onclick="scrollToProducts()">Shop Now</button>
+<section class="hero">
+<h2>Trending Luxury Products</h2>
+<p>Premium Bags, Toys & Watches</p>
 </section>
 
-<section class="products" id="products">
-  <h2>Featured Products</h2>
+<section class="products">
 
-  <div class="product-grid">
+<h2>Featured Products</h2>
 
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1512499617640-c74ae3a79d37?q=80&w=800&auto=format&fit=crop">
-      <h3>Wireless AirPods</h3>
-      <p>₹1,499</p>
+<div class="product-grid">
 
-      <div class="buttons">
-        <button class="buy-btn" onclick="payNow('Wireless AirPods',1499)">Pay with Razorpay</button>
-        <button class="cod-btn">Cash on Delivery</button>
-      </div>
-    </div>
+<div class="card">
+<img src="https://images.unsplash.com/photo-1618336753974-aae8e04506aa?q=80&w=1000">
+<h3>Labubu Doll</h3>
+<p class="price">₹799</p>
 
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=800&auto=format&fit=crop">
-      <h3>Gaming Gadget</h3>
-      <p>₹2,299</p>
+<div class="buttons">
+<button class="buy" onclick="payNow('Labubu Doll',799)">
+Pay with Razorpay
+</button>
 
-      <div class="buttons">
-        <button class="buy-btn" onclick="payNow('Gaming Gadget',2299)">Pay with Razorpay</button>
-        <button class="cod-btn">Cash on Delivery</button>
-      </div>
-    </div>
+<button class="cod">
+Cash on Delivery
+</button>
+</div>
+</div>
 
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?q=80&w=800&auto=format&fit=crop">
-      <h3>Smart Watch</h3>
-      <p>₹1,999</p>
+<div class="card">
+<img src="https://images.unsplash.com/photo-1584917865442-de89df76afd3?q=80&w=1000">
+<h3>Balmain Paris P69 Bag</h3>
+<p class="price">₹3499</p>
 
-      <div class="buttons">
-        <button class="buy-btn" onclick="payNow('Smart Watch',1999)">Pay with Razorpay</button>
-        <button class="cod-btn">Cash on Delivery</button>
-      </div>
-    </div>
+<div class="buttons">
+<button class="buy" onclick="payNow('Balmain Paris P69 Bag',3499)">
+Pay with Razorpay
+</button>
 
-  </div>
-</section>
+<button class="cod">
+Cash on Delivery
+</button>
+</div>
+</div>
 
-<section class="payment-section" id="payment">
-  <h2>Payment Options</h2>
-  <p>We support secure online payments using Razorpay and Cash on Delivery (COD).</p>
-</section>
+<div class="card">
+<img src="https://images.unsplash.com/photo-1548036328-c9fa89d128fa?q=80&w=1000">
+<h3>LV Holdall P60 Bag</h3>
 
-<section class="contact" id="contact">
-  <h2>Contact Us</h2>
-  <p>Email: support@toytopia.store</p>
+<p class="price">
+<span class="old">₹3000</span>
+₹1500
+</p>
+
+<div class="buttons">
+<button class="buy" onclick="payNow('LV Holdall P60 Bag',1500)">
+Pay with Razorpay
+</button>
+
+<button class="cod">
+Cash on Delivery
+</button>
+</div>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1594223274512-ad4803739b7c?q=80&w=1000">
+<h3>Gucci Jackie GG Monogram Bag</h3>
+
+<p class="price">
+<span class="old">₹5000</span>
+₹2000
+</p>
+
+<div class="buttons">
+<button class="buy" onclick="payNow('Gucci Jackie GG Monogram Bag',2000)">
+Pay with Razorpay
+</button>
+
+<button class="cod">
+Cash on Delivery
+</button>
+</div>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?q=80&w=1000">
+<h3>Coach Tabby Shoulder Bag</h3>
+<p class="price">₹1500</p>
+
+<div class="buttons">
+<button class="buy" onclick="payNow('Coach Tabby Shoulder Bag',1500)">
+Pay with Razorpay
+</button>
+
+<button class="cod">
+Cash on Delivery
+</button>
+</div>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1523170335258-f5ed11844a49?q=80&w=1000">
+<h3>Rolex Oyster Watch</h3>
+<p class="price">₹3500</p>
+
+<div class="buttons">
+<button class="buy" onclick="payNow('Rolex Oyster Watch',3500)">
+Pay with Razorpay
+</button>
+
+<button class="cod">
+Cash on Delivery
+</button>
+</div>
+</div>
+
+</div>
+
 </section>
 
 <footer>
-  <p>© 2026 Toy Topia. All Rights Reserved.</p>
+© 2026 Toy Topia. All Rights Reserved.
 </footer>
 
 <script>
-function scrollToProducts(){
-  document.getElementById("products").scrollIntoView({behavior:"smooth"});
-}
 
 function payNow(product, amount){
 
 var options = {
-    "key": "rzp_test_YourKeyHere",
-    "amount": amount * 100,
-    "currency": "INR",
-    "name": "Toy Topia",
-    "description": product,
-    "handler": function (response){
-        alert("Payment Successful! Payment ID: " + response.razorpay_payment_id);
-    },
-    "theme": {
-        "color": "#00d9ff"
-    }
+
+"key": "rzp_live_RmVZXEibHJhsBR",
+
+"amount": amount * 100,
+
+"currency": "INR",
+
+"name": "Toy Topia",
+
+"description": product,
+
+handler: function (response){
+
+alert("Payment Successful!");
+
+}
+
 };
 
 var rzp1 = new Razorpay(options);
+
 rzp1.open();
+
 }
+
 </script>
 
 </body>
