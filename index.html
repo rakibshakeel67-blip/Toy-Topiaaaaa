@@ -1,480 +1,297 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Toy Topia</title>
+<title>Amazon Marketplace V2</title>
 
 <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
 <style>
-
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Arial,sans-serif;
-}
-
-body{
-background:#0d0d0d;
-color:white;
-}
+body{margin:0;font-family:Arial;background:#0d0d0d;color:white}
 
 nav{
 background:#111;
-padding:20px;
+padding:15px;
 display:flex;
-justify-content:center;
+justify-content:space-between;
 align-items:center;
-position:sticky;
-top:0;
-z-index:1000;
-}
-
-nav h1{
 color:#00d9ff;
-font-size:32px;
+position:sticky;top:0;
 }
 
-.hero{
-height:80vh;
-display:flex;
-flex-direction:column;
-justify-content:center;
-align-items:center;
-text-align:center;
-padding:20px;
-background:linear-gradient(to right,#000,#1c1c1c);
-}
-
-.hero h2{
-font-size:55px;
-margin-bottom:20px;
-}
-
-.hero p{
-font-size:20px;
-color:#ccc;
-}
-
-.products{
-padding:60px 20px;
-}
-
-.products h2{
-text-align:center;
-font-size:42px;
-margin-bottom:40px;
-}
-
-.product-grid{
+.container{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-gap:25px;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:15px;
+padding:15px;
 }
 
 .card{
 background:#1a1a1a;
-padding:15px;
-border-radius:15px;
-transition:0.3s;
-}
-
-.card:hover{
-transform:translateY(-8px);
-}
-
-.card img{
-width:100%;
-height:280px;
-object-fit:cover;
+padding:10px;
 border-radius:10px;
 }
 
-.card h3{
-margin-top:15px;
-font-size:22px;
-}
+img{width:100%;height:180px;object-fit:cover;border-radius:8px}
 
-.price{
-color:#00d9ff;
-font-size:22px;
-margin-top:10px;
-font-weight:bold;
-}
-
-.old{
-text-decoration:line-through;
-color:gray;
-margin-right:10px;
-}
-
-.buy{
+button{
 width:100%;
-padding:12px;
-margin-top:15px;
+padding:8px;
+margin-top:5px;
 border:none;
-background:#00d9ff;
-font-weight:bold;
-border-radius:8px;
 cursor:pointer;
-}
-
-form{
-display:flex;
-flex-direction:column;
-gap:10px;
-margin-top:15px;
-}
-
-form input{
-padding:12px;
-border:none;
-border-radius:8px;
-background:#222;
-color:white;
-}
-
-.cod{
-padding:12px;
-border:none;
-border-radius:8px;
-background:#333;
-color:white;
 font-weight:bold;
-cursor:pointer;
 }
 
-footer{
-padding:20px;
-text-align:center;
+.buy{background:#00d9ff}
+.cod{background:#444;color:white}
+
+#cartBox{
+position:fixed;
+right:0;
+top:0;
+width:320px;
+height:100%;
 background:#111;
-margin-top:40px;
+padding:10px;
+overflow:auto;
+display:none;
 }
 
-@media(max-width:768px){
-
-.hero h2{
-font-size:34px;
+.item{
+border-bottom:1px solid #333;
+padding:5px;
 }
 
+.admin{
+position:fixed;
+bottom:10px;
+right:10px;
+background:#00d9ff;
+border:none;
+padding:10px;
+cursor:pointer;
 }
 
+#adminPanel{
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:black;
+overflow:auto;
+padding:20px;
+}
 </style>
 </head>
 
 <body>
 
 <nav>
-<h1>Toy Topia</h1>
+<div>🛒 Amazon Marketplace V2</div>
+<button onclick="toggleCart()">Cart (<span id="count">0</span>)</button>
 </nav>
 
-<section class="hero">
-<h2>Trending Luxury Products</h2>
-<p>Premium Bags, Toys & Watches</p>
-</section>
+<div class="container" id="products"></div>
 
-<section class="products">
+<!-- CART -->
+<div id="cartBox">
+<h3>Cart</h3>
+<div id="cartItems"></div>
+<h3>Total: ₹<span id="total"></span></h3>
 
-<h2>Featured Products</h2>
-
-<div class="product-grid">
-
-<!-- PRODUCT 1 -->
-
-<div class="card">
-
-<img src="https://images.unsplash.com/photo-1618336753974-aae8e04506aa?q=80&w=1000">
-
-<h3>Labubu Doll</h3>
-
-<p class="price">₹799</p>
-
-<button class="buy" onclick="payNow('Labubu Doll',799)">
-Pay with Razorpay
-</button>
-
-<form action="https://formsubmit.co/topiatoy7@gmail.com" method="POST">
-
-<input type="hidden" name="_subject" value="New Toy Topia Order">
-
-<input type="hidden" name="_captcha" value="false">
-
-<input type="hidden" name="_autoresponse" value="Thank you for shopping at Toy Topia. Your order has been confirmed successfully.">
-
-<input type="text" name="name" placeholder="Full Name" required>
-
-<input type="email" name="email" placeholder="Email Address" required>
-
-<input type="text" name="address" placeholder="Delivery Address" required>
-
-<input type="tel" name="phone" placeholder="Phone Number" required>
-
-<input type="hidden" name="product" value="Labubu Doll">
-
-<input type="hidden" name="price" value="799">
-
-<button type="submit" class="cod">
-Place COD Order
-</button>
-
-</form>
-
+<button class="buy" onclick="razorpayPay()">Pay Online</button>
+<button class="cod" onclick="codOrder()">COD Order</button>
+<button onclick="toggleCart()">Close</button>
 </div>
 
-<!-- PRODUCT 2 -->
+<!-- ADMIN -->
+<button class="admin" onclick="openAdmin()">Admin</button>
 
-<div class="card">
-
-<img src="https://images.unsplash.com/photo-1584917865442-de89df76afd3?q=80&w=1000">
-
-<h3>Balmain Paris P69 Bag</h3>
-
-<p class="price">₹3499</p>
-
-<button class="buy" onclick="payNow('Balmain Paris P69 Bag',3499)">
-Pay with Razorpay
-</button>
-
-<form action="https://formsubmit.co/topiatoy7@gmail.com" method="POST">
-
-<input type="hidden" name="_subject" value="New Toy Topia Order">
-
-<input type="hidden" name="_captcha" value="false">
-
-<input type="hidden" name="_autoresponse" value="Thank you for shopping at Toy Topia. Your order has been confirmed successfully.">
-
-<input type="text" name="name" placeholder="Full Name" required>
-
-<input type="email" name="email" placeholder="Email Address" required>
-
-<input type="text" name="address" placeholder="Delivery Address" required>
-
-<input type="tel" name="phone" placeholder="Phone Number" required>
-
-<input type="hidden" name="product" value="Balmain Paris P69 Bag">
-
-<input type="hidden" name="price" value="3499">
-
-<button type="submit" class="cod">
-Place COD Order
-</button>
-
-</form>
-
+<div id="adminPanel">
+<h2>📦 Orders Dashboard</h2>
+<button onclick="closeAdmin()">Close</button>
+<div id="orders"></div>
 </div>
 
-<!-- PRODUCT 3 -->
-
-<div class="card">
-
-<img src="https://images.unsplash.com/photo-1548036328-c9fa89d128fa?q=80&w=1000">
-
-<h3>LV Holdall P60 Bag</h3>
-
-<p class="price">
-<span class="old">₹3000</span>
-₹1500
-</p>
-
-<button class="buy" onclick="payNow('LV Holdall P60 Bag',1500)">
-Pay with Razorpay
-</button>
-
-<form action="https://formsubmit.co/topiatoy7@gmail.com" method="POST">
-
-<input type="hidden" name="_subject" value="New Toy Topia Order">
-
-<input type="hidden" name="_captcha" value="false">
-
-<input type="hidden" name="_autoresponse" value="Thank you for shopping at Toy Topia. Your order has been confirmed successfully.">
-
-<input type="text" name="name" placeholder="Full Name" required>
-
-<input type="email" name="email" placeholder="Email Address" required>
-
-<input type="text" name="address" placeholder="Delivery Address" required>
-
-<input type="tel" name="phone" placeholder="Phone Number" required>
-
-<input type="hidden" name="product" value="LV Holdall P60 Bag">
-
-<input type="hidden" name="price" value="1500">
-
-<button type="submit" class="cod">
-Place COD Order
-</button>
-
-</form>
-
-</div>
-
-<!-- PRODUCT 4 -->
-
-<div class="card">
-
-<img src="https://images.unsplash.com/photo-1594223274512-ad4803739b7c?q=80&w=1000">
-
-<h3>Gucci Jackie GG Monogram Bag</h3>
-
-<p class="price">
-<span class="old">₹5000</span>
-₹2000
-</p>
-
-<button class="buy" onclick="payNow('Gucci Jackie GG Monogram Bag',2000)">
-Pay with Razorpay
-</button>
-
-<form action="https://formsubmit.co/topiatoy7@gmail.com" method="POST">
-
-<input type="hidden" name="_subject" value="New Toy Topia Order">
-
-<input type="hidden" name="_captcha" value="false">
-
-<input type="hidden" name="_autoresponse" value="Thank you for shopping at Toy Topia. Your order has been confirmed successfully.">
-
-<input type="text" name="name" placeholder="Full Name" required>
-
-<input type="email" name="email" placeholder="Email Address" required>
-
-<input type="text" name="address" placeholder="Delivery Address" required>
-
-<input type="tel" name="phone" placeholder="Phone Number" required>
-
-<input type="hidden" name="product" value="Gucci Jackie GG Monogram Bag">
-
-<input type="hidden" name="price" value="2000">
-
-<button type="submit" class="cod">
-Place COD Order
-</button>
-
-</form>
-
-</div>
-
-<!-- PRODUCT 5 -->
-
-<div class="card">
-
-<img src="https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?q=80&w=1000">
-
-<h3>Coach Tabby Shoulder Bag</h3>
-
-<p class="price">₹1500</p>
-
-<button class="buy" onclick="payNow('Coach Tabby Shoulder Bag',1500)">
-Pay with Razorpay
-</button>
-
-<form action="https://formsubmit.co/topiatoy7@gmail.com" method="POST">
-
-<input type="hidden" name="_subject" value="New Toy Topia Order">
-
-<input type="hidden" name="_captcha" value="false">
-
-<input type="hidden" name="_autoresponse" value="Thank you for shopping at Toy Topia. Your order has been confirmed successfully.">
-
-<input type="text" name="name" placeholder="Full Name" required>
-
-<input type="email" name="email" placeholder="Email Address" required>
-
-<input type="text" name="address" placeholder="Delivery Address" required>
-
-<input type="tel" name="phone" placeholder="Phone Number" required>
-
-<input type="hidden" name="product" value="Coach Tabby Shoulder Bag">
-
-<input type="hidden" name="price" value="1500">
-
-<button type="submit" class="cod">
-Place COD Order
-</button>
-
-</form>
-
-</div>
-
-<!-- PRODUCT 6 -->
-
-<div class="card">
-
-<img src="https://images.unsplash.com/photo-1523170335258-f5ed11844a49?q=80&w=1000">
-
-<h3>Rolex Oyster Watch</h3>
-
-<p class="price">₹3500</p>
-
-<button class="buy" onclick="payNow('Rolex Oyster Watch',3500)">
-Pay with Razorpay
-</button>
-
-<form action="https://formsubmit.co/topiatoy7@gmail.com" method="POST">
-
-<input type="hidden" name="_subject" value="New Toy Topia Order">
-
-<input type="hidden" name="_captcha" value="false">
-
-<input type="hidden" name="_autoresponse" value="Thank you for shopping at Toy Topia. Your order has been confirmed successfully.">
-
-<input type="text" name="name" placeholder="Full Name" required>
-
-<input type="email" name="email" placeholder="Email Address" required>
-
-<input type="text" name="address" placeholder="Delivery Address" required>
-
-<input type="tel" name="phone" placeholder="Phone Number" required>
-
-<input type="hidden" name="product" value="Rolex Oyster Watch">
-
-<input type="hidden" name="price" value="3500">
-
-<button type="submit" class="cod">
-Place COD Order
-</button>
-
-</form>
-
-</div>
-
-</div>
-
-</section>
-
-<footer>
-© 2026 Toy Topia. All Rights Reserved.
-</footer>
-
-<script>
-
-function payNow(product, amount){
-
-var options = {
-
-"key": "rzp_live_RmVZXEibHJhsBR",
-
-"amount": amount * 100,
-
-"currency": "INR",
-
-"name": "Toy Topia",
-
-"description": product,
-
-handler: function (response){
-
-alert("Payment Successful!");
-
-}
-
+<script type="module">
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import {
+getFirestore,
+collection,
+addDoc,
+getDocs
+} from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+/* 🔥 FIREBASE CONFIG */
+const firebaseConfig = {
+apiKey: "YOUR_API_KEY",
+authDomain: "YOUR_PROJECT.firebaseapp.com",
+projectId: "YOUR_PROJECT",
+storageBucket: "YOUR_BUCKET",
+messagingSenderId: "ID",
+appId: "ID"
 };
 
-var rzp1 = new Razorpay(options);
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
 
-rzp1.open();
+/* 🛍 50 PRODUCTS (sample set expanded) */
+const products = Array.from({length:50}).map((_,i)=>({
+name:`Product ${i+1}`,
+price: Math.floor(Math.random()*2000)+300,
+img:"https://images.unsplash.com/photo-1585386959984-a41552231693"
+}));
 
+/* CART */
+let cart=[];
+
+const box=document.getElementById("products");
+
+products.forEach((p,i)=>{
+box.innerHTML+=`
+<div class="card">
+<img src="${p.img}">
+<h3>${p.name}</h3>
+<p>₹${p.price}</p>
+<button class="buy" onclick="add(${i})">Add to Cart</button>
+</div>`;
+});
+
+window.add = function(i){
+cart.push(products[i]);
+updateCart();
+}
+
+function updateCart(){
+document.getElementById("count").innerText=cart.length;
+
+let html="",total=0;
+
+cart.forEach((c,i)=>{
+html+=`
+<div class="item">
+<p>${c.name}</p>
+<p>₹${c.price}</p>
+<button onclick="remove(${i})">Remove</button>
+</div>`;
+total+=c.price;
+});
+
+document.getElementById("cartItems").innerHTML=html;
+document.getElementById("total").innerText=total;
+}
+
+window.remove = function(i){
+cart.splice(i,1);
+updateCart();
+}
+
+window.toggleCart = function(){
+let c=document.getElementById("cartBox");
+c.style.display=c.style.display==="block"?"none":"block";
+}
+
+/* 💳 RAZORPAY */
+window.razorpayPay = function(){
+
+let total=cart.reduce((a,b)=>a+b.price,0);
+
+var options={
+key:"rzp_live_RmVZXEibHJhsBR",
+amount:total*100,
+currency:"INR",
+name:"Amazon V2 Marketplace",
+
+handler: async function(res){
+
+let name=prompt("Name");
+let phone=prompt("Phone");
+let address=prompt("Address");
+
+/* SAVE ORDER */
+await addDoc(collection(db,"orders"),{
+cart,
+name,
+phone,
+address,
+paymentId:res.razorpay_payment_id,
+time:new Date()
+});
+
+/* INVOICE */
+const { jsPDF } = window.jspdf;
+const doc = new jsPDF();
+
+doc.text("AMAZON V2 INVOICE",20,20);
+doc.text("Total: ₹"+total,20,40);
+doc.text("Payment ID: "+res.razorpay_payment_id,20,50);
+doc.save("invoice.pdf");
+
+alert("Payment Success + Order Saved");
+cart=[];
+updateCart();
+}
+};
+
+new Razorpay(options).open();
+}
+
+/* COD */
+window.codOrder = async function(){
+
+let name=prompt("Name");
+let phone=prompt("Phone");
+let address=prompt("Address");
+
+await addDoc(collection(db,"orders"),{
+cart,
+name,
+phone,
+address,
+type:"COD",
+time:new Date()
+});
+
+alert("COD Order Placed");
+cart=[];
+updateCart();
+}
+
+/* ADMIN */
+window.openAdmin = async function(){
+
+let pass=prompt("Admin Password");
+if(pass!="admin123") return;
+
+document.getElementById("adminPanel").style.display="block";
+
+let snap=await getDocs(collection(db,"orders"));
+
+let html="";
+
+snap.forEach(d=>{
+let o=d.data();
+
+html+=`
+<div style="border:1px solid #333;margin:10px;padding:10px">
+<p><b>${o.name}</b></p>
+<p>${o.phone}</p>
+<p>${o.address}</p>
+<p>${o.paymentId || "COD Order"}</p>
+</div>`;
+});
+
+document.getElementById("orders").innerHTML=html;
+}
+
+window.closeAdmin=function(){
+document.getElementById("adminPanel").style.display="none";
 }
 
 </script>
