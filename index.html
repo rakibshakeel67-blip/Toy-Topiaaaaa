@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Toy Topia</title>
+<link rel="stylesheet" href="style.css">
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+</head>
+<body>
+
+<header>
+  <nav>
+    <h1>Toy Topia</h1>
+    <ul>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#products">Products</a></li>
+      <li><a href="#payment">Payments</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<section class="hero" id="home">
+  <h2>Trending Toys & Gadgets</h2>
+  <p>Premium gadgets, bags, toys & accessories.</p>
+  <button onclick="scrollToProducts()">Shop Now</button>
+</section>
+
+<section class="products" id="products">
+  <h2>Featured Products</h2>
+
+  <div class="product-grid">
+
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1512499617640-c74ae3a79d37?q=80&w=800&auto=format&fit=crop">
+      <h3>Wireless AirPods</h3>
+      <p>₹1,499</p>
+
+      <div class="buttons">
+        <button class="buy-btn" onclick="payNow('Wireless AirPods',1499)">Pay with Razorpay</button>
+        <button class="cod-btn">Cash on Delivery</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=800&auto=format&fit=crop">
+      <h3>Gaming Gadget</h3>
+      <p>₹2,299</p>
+
+      <div class="buttons">
+        <button class="buy-btn" onclick="payNow('Gaming Gadget',2299)">Pay with Razorpay</button>
+        <button class="cod-btn">Cash on Delivery</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?q=80&w=800&auto=format&fit=crop">
+      <h3>Smart Watch</h3>
+      <p>₹1,999</p>
+
+      <div class="buttons">
+        <button class="buy-btn" onclick="payNow('Smart Watch',1999)">Pay with Razorpay</button>
+        <button class="cod-btn">Cash on Delivery</button>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="payment-section" id="payment">
+  <h2>Payment Options</h2>
+  <p>We support secure online payments using Razorpay and Cash on Delivery (COD).</p>
+</section>
+
+<section class="contact" id="contact">
+  <h2>Contact Us</h2>
+  <p>Email: support@toytopia.store</p>
+</section>
+
+<footer>
+  <p>© 2026 Toy Topia. All Rights Reserved.</p>
+</footer>
+
+<script>
+function scrollToProducts(){
+  document.getElementById("products").scrollIntoView({behavior:"smooth"});
+}
+
+function payNow(product, amount){
+
+var options = {
+    "key": "rzp_test_YourKeyHere",
+    "amount": amount * 100,
+    "currency": "INR",
+    "name": "Toy Topia",
+    "description": product,
+    "handler": function (response){
+        alert("Payment Successful! Payment ID: " + response.razorpay_payment_id);
+    },
+    "theme": {
+        "color": "#00d9ff"
+    }
+};
+
+var rzp1 = new Razorpay(options);
+rzp1.open();
+}
+</script>
+
+</body>
+</html>
