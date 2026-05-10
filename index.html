@@ -1,116 +1,138 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>GiftHub Luxury Store</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ToyTopia</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
-
 <style>
-
 *{
 margin:0;
 padding:0;
 box-sizing:border-box;
 font-family:'Poppins',sans-serif;
+scroll-behavior:smooth;
 }
 
 body{
-background:#0d0d0d;
-color:white;
-overflow-x:hidden;
+background:#000;
+color:#fff;
 }
 
 header{
-padding:20px;
-background:#111;
+position:fixed;
+top:0;
+width:100%;
+background:#000;
+padding:18px 6%;
 display:flex;
 justify-content:space-between;
 align-items:center;
-position:sticky;
-top:0;
-z-index:999;
+z-index:1000;
 border-bottom:1px solid #222;
 }
 
 .logo{
-font-size:28px;
+display:flex;
+align-items:center;
+gap:10px;
+font-size:34px;
 font-weight:700;
-color:#ffd700;
+color:#ffd000;
+}
+
+.logo img{
+width:55px;
+height:55px;
+border-radius:50%;
+}
+
+nav{
+display:flex;
+gap:22px;
 }
 
 nav a{
-color:white;
-margin-left:20px;
+color:#fff;
 text-decoration:none;
-font-size:14px;
-transition:0.3s;
+font-size:18px;
+font-weight:500;
 }
 
 nav a:hover{
-color:#ffd700;
+color:#ffd000;
 }
 
 .hero{
-height:80vh;
-background:linear-gradient(to right,#000000dd,#00000088),
-url('https://images.unsplash.com/photo-1523275335684-37898b6baf30');
+height:100vh;
+background:linear-gradient(rgba(0,0,0,.65),rgba(0,0,0,.75)),
+url('https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=1974&auto=format&fit=crop');
 background-size:cover;
 background-position:center;
 display:flex;
 align-items:center;
-padding:50px;
+justify-content:center;
+text-align:center;
+padding:20px;
 }
 
 .hero-content h1{
-font-size:60px;
-margin-bottom:20px;
+font-size:70px;
+font-weight:700;
+margin-bottom:15px;
+}
+
+.hero-content span{
+color:#ffd000;
 }
 
 .hero-content p{
-font-size:18px;
-max-width:600px;
-color:#ccc;
-margin-bottom:30px;
+font-size:20px;
+max-width:700px;
+margin:auto;
+margin-bottom:25px;
+color:#ddd;
 }
 
-.hero button{
-padding:15px 30px;
-background:#ffd700;
+.hero-content button{
+padding:14px 35px;
 border:none;
-border-radius:8px;
-font-size:16px;
-font-weight:600;
+background:#ffd000;
+color:#000;
+font-size:18px;
+font-weight:700;
+border-radius:10px;
 cursor:pointer;
 }
 
+section{
+padding:110px 6%;
+}
+
 .section-title{
-padding:50px 30px 20px;
-font-size:32px;
+font-size:48px;
+margin-bottom:45px;
 font-weight:700;
 }
 
 .products{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:25px;
-padding:20px 30px 50px;
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+gap:28px;
 }
 
 .card{
-background:#151515;
-border-radius:15px;
+background:#111;
+border-radius:18px;
 overflow:hidden;
-transition:0.4s;
+transition:.3s;
 border:1px solid #222;
 }
 
 .card:hover{
 transform:translateY(-8px);
-box-shadow:0 0 20px rgba(255,215,0,0.3);
 }
 
 .card img{
@@ -120,474 +142,411 @@ object-fit:cover;
 }
 
 .card-content{
-padding:15px;
+padding:20px;
 }
 
 .card h3{
-font-size:20px;
+font-size:24px;
 margin-bottom:10px;
 }
 
 .price{
-margin-bottom:10px;
+display:flex;
+gap:12px;
+align-items:center;
+margin-bottom:15px;
 }
 
 .old{
 text-decoration:line-through;
-color:#999;
-margin-right:10px;
+color:#777;
+font-size:18px;
 }
 
 .new{
-color:#ffd700;
-font-size:22px;
+color:#ffd000;
+font-size:30px;
 font-weight:700;
 }
 
 .desc{
-font-size:13px;
 color:#ccc;
-margin-bottom:15px;
+font-size:15px;
+margin-bottom:18px;
 line-height:1.6;
 }
 
-.btns{
+.buttons{
 display:flex;
-gap:10px;
+gap:12px;
 }
 
-.btn{
+.buttons button{
 flex:1;
-padding:10px;
+padding:13px;
 border:none;
-border-radius:8px;
+border-radius:10px;
+font-size:16px;
+font-weight:600;
 cursor:pointer;
+}
+
+.add{
+background:#222;
+color:#fff;
+}
+
+.buy{
+background:#ffd000;
+color:#000;
+}
+
+.cod{
+margin-top:10px;
+font-size:14px;
+color:#00ff88;
 font-weight:600;
 }
 
-.cart-btn{
-background:#222;
-color:white;
+.order-box{
+background:#111;
+padding:35px;
+border-radius:20px;
+margin-top:50px;
+border:1px solid #222;
 }
 
-.buy-btn{
-background:#ffd700;
-color:black;
+.order-box h2{
+margin-bottom:20px;
+font-size:35px;
+}
+
+.input-group{
+margin-bottom:18px;
+}
+
+.input-group input,
+.input-group textarea{
+width:100%;
+padding:16px;
+background:#000;
+border:1px solid #333;
+border-radius:10px;
+color:#fff;
+font-size:16px;
+}
+
+.submit-btn{
+width:100%;
+padding:16px;
+background:#ffd000;
+border:none;
+font-size:18px;
+font-weight:700;
+border-radius:12px;
+cursor:pointer;
 }
 
 footer{
-background:#111;
-padding:40px;
+padding:30px;
 text-align:center;
+background:#111;
+margin-top:50px;
 border-top:1px solid #222;
-}
-
-footer p{
-color:#888;
-margin-top:10px;
 }
 
 .whatsapp{
 position:fixed;
-bottom:20px;
-right:20px;
+bottom:25px;
+right:25px;
 background:#25D366;
-width:60px;
-height:60px;
+width:70px;
+height:70px;
 border-radius:50%;
 display:flex;
-align-items:center;
 justify-content:center;
-font-size:30px;
-color:white;
+align-items:center;
+font-size:34px;
 text-decoration:none;
-box-shadow:0 0 20px rgba(0,0,0,0.4);
+color:#fff;
 z-index:999;
-}
-
-.cart-box{
-position:fixed;
-top:90px;
-right:20px;
-background:#151515;
-padding:20px;
-border-radius:15px;
-width:320px;
-max-height:500px;
-overflow-y:auto;
-display:none;
-z-index:999;
-border:1px solid #333;
-}
-
-.cart-box h2{
-margin-bottom:15px;
-}
-
-.cart-item{
-margin-bottom:10px;
-padding-bottom:10px;
-border-bottom:1px solid #333;
-}
-
-.total{
-margin-top:15px;
-font-size:20px;
-font-weight:700;
-color:#ffd700;
-}
-
-.checkout-btn{
-width:100%;
-margin-top:15px;
-padding:12px;
-background:#ffd700;
-border:none;
-border-radius:8px;
-font-weight:700;
-cursor:pointer;
 }
 
 @media(max-width:768px){
 
+header{
+flex-direction:column;
+gap:15px;
+}
+
+nav{
+flex-wrap:wrap;
+justify-content:center;
+}
+
 .hero-content h1{
-font-size:38px;
+font-size:42px;
 }
 
-.hero{
-padding:20px;
-height:70vh;
+.section-title{
+font-size:35px;
 }
-
 }
-
 </style>
 </head>
 
 <body>
 
 <header>
-<div class="logo">GiftHub</div>
+
+<div class="logo">
+<img src="https://cdn-icons-png.flaticon.com/512/3081/3081559.png">
+ToyTopia
+</div>
 
 <nav>
-<a href="#">Home</a>
 <a href="#anime">Anime</a>
 <a href="#gadgets">Gadgets</a>
 <a href="#watches">Watches</a>
 <a href="#bags">Bags</a>
-<a href="#" onclick="toggleCart()">Cart 🛒</a>
+<a href="#order">Order</a>
 </nav>
+
 </header>
 
-<section class="hero">
+<div class="hero">
+
 <div class="hero-content">
-<h1>Luxury Meets Anime</h1>
-<p>Premium gadgets, luxury watches, anime collectibles and designer bags at unbeatable prices.</p>
+<h1>Welcome To <span>ToyTopia</span></h1>
+<p>Premium Anime • Luxury Watches • Designer Bags • Cool Gadgets</p>
 <button onclick="document.getElementById('anime').scrollIntoView()">Shop Now</button>
 </div>
+
+</div>
+
+<!-- Anime -->
+
+<section id="anime">
+
+<h1 class="section-title">Anime Collection</h1>
+
+<div class="products">
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1608889175123-8ee362201f81?q=80&w=1974&auto=format&fit=crop">
+<div class="card-content">
+<h3>Anime Keychain</h3>
+<div class="price">
+<div class="old">₹200</div>
+<div class="new">₹150</div>
+</div>
+<p class="desc">Cute anime keychain perfect for anime lovers.</p>
+<div class="buttons">
+<button class="add">Add</button>
+<button class="buy">Buy</button>
+</div>
+<div class="cod">Cash On Delivery Available</div>
+</div>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1578632767115-351597cf2477?q=80&w=1974&auto=format&fit=crop">
+<div class="card-content">
+<h3>Anime Figure</h3>
+<div class="price">
+<div class="old">₹1200</div>
+<div class="new">₹799</div>
+</div>
+<p class="desc">Premium anime collectible figure.</p>
+<div class="buttons">
+<button class="add">Add</button>
+<button class="buy">Buy</button>
+</div>
+<div class="cod">Cash On Delivery Available</div>
+</div>
+</div>
+
+</div>
+
 </section>
 
-<div class="cart-box" id="cartBox">
-<h2>Your Cart</h2>
-<div id="cartItems"></div>
-<div class="total">Total: ₹<span id="total">0</span></div>
-<button class="checkout-btn" onclick="payNow()">Pay Now</button>
-</div>
+<!-- Gadgets -->
 
-<!-- ANIME -->
+<section id="gadgets">
 
-<h2 class="section-title" id="anime">Anime Collection</h2>
+<h1 class="section-title">Gadgets</h1>
 
 <div class="products">
 
 <div class="card">
-<img src="https://i.imgur.com/K4wY7sA.jpeg">
-<div class="card-content">
-<h3>One Piece Keychain</h3>
-<div class="price">
-<span class="old">₹200</span>
-<span class="new">₹150</span>
-</div>
-<p class="desc">Premium anime keychain perfect for One Piece fans.</p>
-<div class="btns">
-<button class="btn cart-btn" onclick="addToCart('One Piece Keychain',150)">Add</button>
-<button class="btn buy-btn" onclick="buySingle('One Piece Keychain',150)">Buy</button>
-</div>
-</div>
-</div>
-
-<div class="card">
-<img src="https://i.imgur.com/tbM6M6x.jpeg">
-<div class="card-content">
-<h3>Itachi Keychain</h3>
-<div class="price">
-<span class="old">₹200</span>
-<span class="new">₹150</span>
-</div>
-<p class="desc">Cute Itachi anime collectible keychain.</p>
-<div class="btns">
-<button class="btn cart-btn" onclick="addToCart('Itachi Keychain',150)">Add</button>
-<button class="btn buy-btn" onclick="buySingle('Itachi Keychain',150)">Buy</button>
-</div>
-</div>
-</div>
-
-</div>
-
-<!-- GADGETS -->
-
-<h2 class="section-title" id="gadgets">Premium Gadgets</h2>
-
-<div class="products">
-
-<div class="card">
-<img src="https://i.imgur.com/F7YwXxW.jpeg">
+<img src="https://images.unsplash.com/photo-1585386959984-a41552231658?q=80&w=1974&auto=format&fit=crop">
 <div class="card-content">
 <h3>RGB Speaker</h3>
 <div class="price">
-<span class="old">₹2500</span>
-<span class="new">₹1599</span>
+<div class="old">₹2500</div>
+<div class="new">₹1599</div>
 </div>
-<p class="desc">Portable RGB bluetooth speaker with powerful bass.</p>
-<div class="btns">
-<button class="btn cart-btn" onclick="addToCart('RGB Speaker',1599)">Add</button>
-<button class="btn buy-btn" onclick="buySingle('RGB Speaker',1599)">Buy</button>
+<p class="desc">Portable RGB speaker with bass sound.</p>
+<div class="buttons">
+<button class="add">Add</button>
+<button class="buy">Buy</button>
 </div>
+<div class="cod">Cash On Delivery Available</div>
 </div>
 </div>
 
 <div class="card">
-<img src="https://i.imgur.com/WV9rRzC.jpeg">
+<img src="https://images.unsplash.com/photo-1546435770-a3e426bf472b?q=80&w=1974&auto=format&fit=crop">
 <div class="card-content">
 <h3>AirPods Max</h3>
 <div class="price">
-<span class="old">₹4000</span>
-<span class="new">₹2500</span>
+<div class="old">₹4000</div>
+<div class="new">₹2500</div>
 </div>
-<p class="desc">Luxury wireless headphones with premium design.</p>
-<div class="btns">
-<button class="btn cart-btn" onclick="addToCart('AirPods Max',2500)">Add</button>
-<button class="btn buy-btn" onclick="buySingle('AirPods Max',2500)">Buy</button>
+<p class="desc">Luxury wireless headphones with premium look.</p>
+<div class="buttons">
+<button class="add">Add</button>
+<button class="buy">Buy</button>
 </div>
+<div class="cod">Cash On Delivery Available</div>
 </div>
 </div>
 
 </div>
 
-<!-- WATCHES -->
+</section>
 
-<h2 class="section-title" id="watches">Luxury Watches</h2>
+<!-- Watches -->
+
+<section id="watches">
+
+<h1 class="section-title">Luxury Watches</h1>
 
 <div class="products">
 
 <div class="card">
-<img src="https://i.imgur.com/INz7u6M.jpeg">
+<img src="https://images.unsplash.com/photo-1547996160-81dfa63595aa?q=80&w=1974&auto=format&fit=crop">
 <div class="card-content">
 <h3>Rolex Watch</h3>
 <div class="price">
-<span class="old">₹5000</span>
-<span class="new">₹2000</span>
+<div class="old">₹5000</div>
+<div class="new">₹2000</div>
 </div>
-<p class="desc">Luxury Rolex inspired premium watch.</p>
-<div class="btns">
-<button class="btn cart-btn" onclick="addToCart('Rolex Watch',2000)">Add</button>
-<button class="btn buy-btn" onclick="buySingle('Rolex Watch',2000)">Buy</button>
+<p class="desc">Premium luxury watch with elegant design.</p>
+<div class="buttons">
+<button class="add">Add</button>
+<button class="buy">Buy</button>
 </div>
+<div class="cod">₹1400 Extra For Original Box</div>
 </div>
 </div>
 
 <div class="card">
-<img src="https://i.imgur.com/Fv5vZfQ.jpeg">
+<img src="https://images.unsplash.com/photo-1523170335258-f5ed11844a49?q=80&w=1974&auto=format&fit=crop">
 <div class="card-content">
-<h3>G-Shock Watch</h3>
+<h3>Omega Watch</h3>
 <div class="price">
-<span class="old">₹2500</span>
-<span class="new">₹2000</span>
+<div class="old">₹5000</div>
+<div class="new">₹2599</div>
 </div>
-<p class="desc">Premium sporty G-Shock inspired watch.</p>
-<div class="btns">
-<button class="btn cart-btn" onclick="addToCart('G-Shock Watch',2000)">Add</button>
-<button class="btn buy-btn" onclick="buySingle('G-Shock Watch',2000)">Buy</button>
+<p class="desc">Stylish premium Omega inspired watch.</p>
+<div class="buttons">
+<button class="add">Add</button>
+<button class="buy">Buy</button>
 </div>
+<div class="cod">₹1400 Extra For Original Box</div>
 </div>
 </div>
 
 </div>
 
-<!-- BAGS -->
+</section>
 
-<h2 class="section-title" id="bags">Designer Bags</h2>
+<!-- Bags -->
+
+<section id="bags">
+
+<h1 class="section-title">Designer Bags</h1>
 
 <div class="products">
 
 <div class="card">
-<img src="https://i.imgur.com/v2W4w4B.jpeg">
+<img src="https://images.unsplash.com/photo-1584917865442-de89df76afd3?q=80&w=1974&auto=format&fit=crop">
 <div class="card-content">
-<h3>Gucci Bag</h3>
+<h3>Luxury Gucci Bag</h3>
 <div class="price">
-<span class="old">₹5000</span>
-<span class="new">₹3199</span>
+<div class="old">₹5000</div>
+<div class="new">₹3199</div>
 </div>
-<p class="desc">Luxury Gucci inspired shoulder bag.</p>
-<div class="btns">
-<button class="btn cart-btn" onclick="addToCart('Gucci Bag',3199)">Add</button>
-<button class="btn buy-btn" onclick="buySingle('Gucci Bag',3199)">Buy</button>
+<p class="desc">Beautiful premium handbag for stylish look.</p>
+<div class="buttons">
+<button class="add">Add</button>
+<button class="buy">Buy</button>
 </div>
+<div class="cod">₹1400 Extra For Original Box</div>
 </div>
 </div>
 
 <div class="card">
-<img src="https://i.imgur.com/g1mJxD4.jpeg">
+<img src="https://images.unsplash.com/photo-1594223274512-ad4803739b7c?q=80&w=1974&auto=format&fit=crop">
 <div class="card-content">
-<h3>LV Luxury Bag</h3>
+<h3>LV Bag</h3>
 <div class="price">
-<span class="old">₹5000</span>
-<span class="new">₹3799</span>
+<div class="old">₹5000</div>
+<div class="new">₹3799</div>
 </div>
-<p class="desc">Premium LV inspired handbag with luxury finish.</p>
-<div class="btns">
-<button class="btn cart-btn" onclick="addToCart('LV Luxury Bag',3799)">Add</button>
-<button class="btn buy-btn" onclick="buySingle('LV Luxury Bag',3799)">Buy</button>
+<p class="desc">Premium designer handbag with elegant finish.</p>
+<div class="buttons">
+<button class="add">Add</button>
+<button class="buy">Buy</button>
 </div>
+<div class="cod">₹1400 Extra For Original Box</div>
 </div>
 </div>
 
 </div>
+
+</section>
+
+<!-- Order -->
+
+<section id="order">
+
+<div class="order-box">
+
+<h2>Place Your Order</h2>
+
+<div class="input-group">
+<input type="text" placeholder="Full Name">
+</div>
+
+<div class="input-group">
+<input type="email" placeholder="Email Address">
+</div>
+
+<div class="input-group">
+<input type="text" placeholder="Phone Number">
+</div>
+
+<div class="input-group">
+<textarea rows="5" placeholder="Your Address"></textarea>
+</div>
+
+<div class="input-group">
+<input type="text" placeholder="Product Name">
+</div>
+
+<button class="submit-btn">Place COD Order</button>
+
+</div>
+
+</section>
 
 <footer>
-<h2>GiftHub</h2>
-<p>Luxury Lifestyle Marketplace</p>
-<p>© 2026 All Rights Reserved</p>
+© 2026 ToyTopia — All Rights Reserved
 </footer>
 
-<a class="whatsapp" href="https://wa.me/919999999999">☎</a>
-
-<script>
-
-let cart = [];
-let total = 0;
-
-function addToCart(name,price){
-
-cart.push({name,price});
-total += price;
-
-updateCart();
-
-alert(name + " added to cart");
-
-}
-
-function updateCart(){
-
-let cartItems = document.getElementById("cartItems");
-cartItems.innerHTML = "";
-
-cart.forEach(item=>{
-
-cartItems.innerHTML += `
-<div class="cart-item">
-${item.name} - ₹${item.price}
-</div>
-`;
-
-});
-
-document.getElementById("total").innerText = total;
-
-}
-
-function toggleCart(){
-
-let cartBox = document.getElementById("cartBox");
-
-if(cartBox.style.display=="block"){
-cartBox.style.display="none";
-}else{
-cartBox.style.display="block";
-}
-
-}
-
-function buySingle(name,price){
-
-var options = {
-"key": "rzp_live_RmVZXEibHJhsBR",
-"amount": price * 100,
-"currency": "INR",
-"name": "GiftHub",
-"description": name,
-"handler": function (response){
-
-alert("Payment Successful!");
-
-generateInvoice(name,price,response.razorpay_payment_id);
-
-}
-};
-
-var rzp1 = new Razorpay(options);
-rzp1.open();
-
-}
-
-function payNow(){
-
-if(cart.length==0){
-alert("Cart Empty");
-return;
-}
-
-var options = {
-"key": "rzp_live_RmVZXEibHJhsBR",
-"amount": total * 100,
-"currency": "INR",
-"name": "GiftHub",
-"description": "Order Payment",
-"handler": function (response){
-
-alert("Payment Successful!");
-
-generateInvoice("GiftHub Order",total,response.razorpay_payment_id);
-
-}
-};
-
-var rzp1 = new Razorpay(options);
-rzp1.open();
-
-}
-
-function generateInvoice(product,amount,paymentId){
-
-let invoice = `
-INVOICE
-
-Store: GiftHub
-
-Product: ${product}
-
-Amount Paid: ₹${amount}
-
-Payment ID:
-${paymentId}
-
-Thank You For Shopping!
-`;
-
-let blob = new Blob([invoice], { type: 'text/plain' });
-
-let a = document.createElement('a');
-
-a.href = URL.createObjectURL(blob);
-
-a.download = "invoice.txt";
-
-a.click();
-
-}
-
-</script>
+<a class="whatsapp" href="tel:+919999999999">📞</a>
 
 </body>
 </html>
