@@ -6,160 +6,276 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ToyTopia</title>
 <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
 <style>
-body{margin:0;font-family:Arial;background:linear-gradient(135deg,#ffe0f0,#d7f7ff,#fff0b3)}
-header{padding:20px;background:white;text-align:center;font-size:40px;font-weight:bold;color:#ff3f7a;position:sticky;top:0}
-.hero{padding:90px 20px;text-align:center;background:url('https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=1800&auto=format&fit=crop');background-size:cover;color:white}
-.hero h1{font-size:65px}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:25px;padding:40px}
-.card{background:white;border-radius:22px;overflow:hidden;cursor:pointer;box-shadow:0 10px 20px rgba(0,0,0,.08)}
-.card img{width:100%;height:300px;object-fit:cover}
-.content{padding:20px}
-.badge{display:inline-block;background:#ffe27a;padding:7px 12px;border-radius:20px;font-size:12px;font-weight:bold}
-.old{text-decoration:line-through;color:gray}
-.new{font-size:32px;color:#ff3f7a;font-weight:bold}
-.modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.8);justify-content:center;align-items:center;padding:20px}
-.modal-box{background:white;max-width:1000px;width:100%;border-radius:25px;overflow:hidden;display:grid;grid-template-columns:1fr 1fr}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
+body{background:#f7f8ff;color:#222}
+header{position:sticky;top:0;background:white;padding:18px 5%;display:flex;justify-content:space-between;align-items:center;box-shadow:0 2px 10px rgba(0,0,0,.08);z-index:1000}
+.logo{font-size:34px;font-weight:bold;color:#ff4b7d}
+nav{display:flex;gap:18px;flex-wrap:wrap}
+nav a{text-decoration:none;color:#333;font-weight:bold}
+
+.hero{
+padding:120px 20px 90px;
+text-align:center;
+background:linear-gradient(rgba(255,255,255,.5),rgba(255,255,255,.5)),
+url('https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=1800&auto=format&fit=crop');
+background-size:cover;
+}
+
+.hero h1{font-size:68px;color:#ff4b7d}
+.hero p{font-size:22px;margin-top:15px}
+
+.gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;padding:40px 5%}
+.gallery img{width:100%;height:320px;object-fit:cover;border-radius:20px}
+
+.section{padding:60px 5%}
+.section h2{font-size:42px;text-align:center;color:#ff4b7d;margin-bottom:25px}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:25px}
+
+.card{background:white;border-radius:20px;overflow:hidden;box-shadow:0 6px 18px rgba(0,0,0,.08);cursor:pointer;transition:.3s}
+.card:hover{transform:translateY(-6px)}
+.card img{width:100%;height:280px;object-fit:cover}
+.info{padding:18px}
+.old{text-decoration:line-through;color:#888;margin-right:10px}
+.new{font-size:30px;color:#ff4b7d;font-weight:bold}
+.desc{margin-top:10px;color:#555;line-height:1.6}
+
+.modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.75);justify-content:center;align-items:center;padding:20px;z-index:2000}
+.modal-box{background:white;max-width:900px;width:100%;border-radius:20px;overflow:hidden;display:grid;grid-template-columns:1fr 1fr}
 .modal-box img{width:100%;height:100%;object-fit:cover}
-.modal-content{padding:30px}
-button{width:100%;padding:15px;border:none;border-radius:12px;background:linear-gradient(90deg,#ff4f81,#ff9966);color:white;font-weight:bold;margin-top:15px}
-input,textarea{width:100%;padding:14px;margin-top:10px;border-radius:10px;border:1px solid #ddd}
-.close{position:absolute;top:20px;right:25px;color:white;font-size:35px;cursor:pointer}
-@media(max-width:768px){.modal-box{grid-template-columns:1fr} .hero h1{font-size:42px}}
+.modal-content{padding:25px}
+.close{position:absolute;top:20px;right:25px;font-size:35px;color:white;cursor:pointer}
+
+button{width:100%;padding:14px;border:none;border-radius:12px;font-weight:bold;margin-top:15px;cursor:pointer}
+.pay{background:#ff4b7d;color:white}
+.cod{background:#eee}
+
+input,textarea{width:100%;padding:14px;margin-top:10px;border:1px solid #ddd;border-radius:10px}
+
+footer{padding:30px;text-align:center;background:white;margin-top:40px}
+
+@media(max-width:768px){
+.hero h1{font-size:42px}
+.modal-box{grid-template-columns:1fr}
+}
 </style>
 </head>
+
 <body>
 
-<header>ToyTopia</header>
+<header>
+<div class="logo">ToyTopia</div>
+<nav>
+<a href="#">Anime</a>
+<a href="#">Gadgets</a>
+<a href="#">Watches</a>
+<a href="#">Bags</a>
+<a href="#">Beauty</a>
+</nav>
+</header>
 
-<div class="hero">
+<section class="hero">
 <h1>Luxury Meets Anime</h1>
-<p>Premium Anime • Gadgets • Luxury Fashion</p>
-</div>
+<p>Premium anime collectibles, gadgets, watches and designer fashion.</p>
+</section>
 
-<div class="grid">
+<section class="gallery">
+<img src="https://wallpapercave.com/wp/wp11739991.jpg">
+<img src="https://images.unsplash.com/photo-1546435770-a3e426bf472b?q=80&w=1200&auto=format&fit=crop">
+<img src="https://images.unsplash.com/photo-1547996160-81dfa63595aa?q=80&w=1200&auto=format&fit=crop">
+</section>
 
-    <div class="card" onclick="openProduct('Naruto Action Figure','1500','Premium Naruto collectible figure.','https://images.unsplash.com/photo-1578632767115-351597cf2477?q=80&w=1200&auto=format&fit=crop')">
-        <img src="https://images.unsplash.com/photo-1578632767115-351597cf2477?q=80&w=1200&auto=format&fit=crop">
-        <div class="content">
-            <div class="badge">15% OFF PREPAID</div>
-            <h3>Naruto Action Figure</h3>
-            <p><span class="old">₹2500</span> <span class="new">₹1500</span></p>
-            <p>Premium Naruto collectible figure.</p>
-        </div>
-    </div>
+
+    <section class="section">
+    <h2>Anime Collection</h2>
+    <div class="grid">
     
-    <div class="card" onclick="openProduct('Itachi Uchiha Figure','2500','Dark aesthetic anime collectible.','https://images.unsplash.com/photo-1608889175123-8ee362201f81?q=80&w=1200&auto=format&fit=crop')">
-        <img src="https://images.unsplash.com/photo-1608889175123-8ee362201f81?q=80&w=1200&auto=format&fit=crop">
-        <div class="content">
-            <div class="badge">15% OFF PREPAID</div>
-            <h3>Itachi Uchiha Figure</h3>
-            <p><span class="old">₹4000</span> <span class="new">₹2500</span></p>
-            <p>Dark aesthetic anime collectible.</p>
+        <div class="card" onclick="openProduct('Naruto Figure','1500','Premium Naruto anime collectible figure.','https://wallpapercave.com/wp/wp11739991.jpg')">
+            <img src="https://wallpapercave.com/wp/wp11739991.jpg">
+            <div class="info">
+                <h3>Naruto Figure</h3>
+                <p><span class="old">₹2500</span> <span class="new">₹1500</span></p>
+                <p class="desc">Premium Naruto anime collectible figure.</p>
+            </div>
         </div>
-    </div>
-    
-    <div class="card" onclick="openProduct('Luffy Figure','3599','Limited One Piece collectible.','https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=1200&auto=format&fit=crop')">
-        <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=1200&auto=format&fit=crop">
-        <div class="content">
-            <div class="badge">15% OFF PREPAID</div>
-            <h3>Luffy Figure</h3>
-            <p><span class="old">₹5000</span> <span class="new">₹3599</span></p>
-            <p>Limited One Piece collectible.</p>
+        
+        <div class="card" onclick="openProduct('Itachi Figure','2500','Dark aesthetic Itachi anime figure.','https://wallpapercave.com/wp/wp6538570.jpg')">
+            <img src="https://wallpapercave.com/wp/wp6538570.jpg">
+            <div class="info">
+                <h3>Itachi Figure</h3>
+                <p><span class="old">₹4000</span> <span class="new">₹2500</span></p>
+                <p class="desc">Dark aesthetic Itachi anime figure.</p>
+            </div>
         </div>
-    </div>
-    
-    <div class="card" onclick="openProduct('RGB Speaker','1599','Portable RGB bluetooth speaker.','https://images.unsplash.com/photo-1585386959984-a41552231658?q=80&w=1200&auto=format&fit=crop')">
-        <img src="https://images.unsplash.com/photo-1585386959984-a41552231658?q=80&w=1200&auto=format&fit=crop">
-        <div class="content">
-            <div class="badge">15% OFF PREPAID</div>
-            <h3>RGB Speaker</h3>
-            <p><span class="old">₹2500</span> <span class="new">₹1599</span></p>
-            <p>Portable RGB bluetooth speaker.</p>
+        
+        <div class="card" onclick="openProduct('Luffy Figure','3599','One Piece Luffy collectible figure.','https://wallpapercave.com/wp/wp12220151.jpg')">
+            <img src="https://wallpapercave.com/wp/wp12220151.jpg">
+            <div class="info">
+                <h3>Luffy Figure</h3>
+                <p><span class="old">₹5000</span> <span class="new">₹3599</span></p>
+                <p class="desc">One Piece Luffy collectible figure.</p>
+            </div>
         </div>
-    </div>
-    
-    <div class="card" onclick="openProduct('AirPods Max','2500','Premium wireless headphones.','https://images.unsplash.com/photo-1546435770-a3e426bf472b?q=80&w=1200&auto=format&fit=crop')">
-        <img src="https://images.unsplash.com/photo-1546435770-a3e426bf472b?q=80&w=1200&auto=format&fit=crop">
-        <div class="content">
-            <div class="badge">15% OFF PREPAID</div>
-            <h3>AirPods Max</h3>
-            <p><span class="old">₹4000</span> <span class="new">₹2500</span></p>
-            <p>Premium wireless headphones.</p>
+        
+        <div class="card" onclick="openProduct('Shanks Figure','4500','Premium Shanks anime collectible.','https://wallpapercave.com/wp/wp11820904.jpg')">
+            <img src="https://wallpapercave.com/wp/wp11820904.jpg">
+            <div class="info">
+                <h3>Shanks Figure</h3>
+                <p><span class="old">₹7000</span> <span class="new">₹4500</span></p>
+                <p class="desc">Premium Shanks anime collectible.</p>
+            </div>
         </div>
+        
     </div>
+    </section>
     
-    <div class="card" onclick="openProduct('Mini Printer','2000','Portable aesthetic printer.','https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1200&auto=format&fit=crop')">
-        <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1200&auto=format&fit=crop">
-        <div class="content">
-            <div class="badge">15% OFF PREPAID</div>
-            <h3>Mini Printer</h3>
-            <p><span class="old">₹3000</span> <span class="new">₹2000</span></p>
-            <p>Portable aesthetic printer.</p>
+    <section class="section">
+    <h2>Gadgets</h2>
+    <div class="grid">
+    
+        <div class="card" onclick="openProduct('RGB Speaker','1599','Portable RGB bluetooth speaker.','https://images.unsplash.com/photo-1505740420928-5e560c06d30e?q=80&w=1200&auto=format&fit=crop')">
+            <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?q=80&w=1200&auto=format&fit=crop">
+            <div class="info">
+                <h3>RGB Speaker</h3>
+                <p><span class="old">₹2500</span> <span class="new">₹1599</span></p>
+                <p class="desc">Portable RGB bluetooth speaker.</p>
+            </div>
         </div>
-    </div>
-    
-    <div class="card" onclick="openProduct('Rolex Watch','2000','Luxury inspired Rolex watch.','https://images.unsplash.com/photo-1547996160-81dfa63595aa?q=80&w=1200&auto=format&fit=crop')">
-        <img src="https://images.unsplash.com/photo-1547996160-81dfa63595aa?q=80&w=1200&auto=format&fit=crop">
-        <div class="content">
-            <div class="badge">15% OFF PREPAID</div>
-            <h3>Rolex Watch</h3>
-            <p><span class="old">₹5000</span> <span class="new">₹2000</span></p>
-            <p>Luxury inspired Rolex watch.</p>
+        
+        <div class="card" onclick="openProduct('AirPods Max','2500','Premium wireless headphones.','https://images.unsplash.com/photo-1546435770-a3e426bf472b?q=80&w=1200&auto=format&fit=crop')">
+            <img src="https://images.unsplash.com/photo-1546435770-a3e426bf472b?q=80&w=1200&auto=format&fit=crop">
+            <div class="info">
+                <h3>AirPods Max</h3>
+                <p><span class="old">₹4000</span> <span class="new">₹2500</span></p>
+                <p class="desc">Premium wireless headphones.</p>
+            </div>
         </div>
-    </div>
-    
-    <div class="card" onclick="openProduct('Cartier Watch','3000','Elegant Cartier inspired watch.','https://images.unsplash.com/photo-1434056886845-dac89ffe9b56?q=80&w=1200&auto=format&fit=crop')">
-        <img src="https://images.unsplash.com/photo-1434056886845-dac89ffe9b56?q=80&w=1200&auto=format&fit=crop">
-        <div class="content">
-            <div class="badge">15% OFF PREPAID</div>
-            <h3>Cartier Watch</h3>
-            <p><span class="old">₹4500</span> <span class="new">₹3000</span></p>
-            <p>Elegant Cartier inspired watch.</p>
+        
+        <div class="card" onclick="openProduct('Mini Printer','2000','Portable aesthetic printer.','https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1200&auto=format&fit=crop')">
+            <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1200&auto=format&fit=crop">
+            <div class="info">
+                <h3>Mini Printer</h3>
+                <p><span class="old">₹3000</span> <span class="new">₹2000</span></p>
+                <p class="desc">Portable aesthetic printer.</p>
+            </div>
         </div>
-    </div>
-    
-    <div class="card" onclick="openProduct('G Shock Watch','2000','Sporty rugged premium watch.','https://images.unsplash.com/photo-1522312346375-d1a52e2b99b3?q=80&w=1200&auto=format&fit=crop')">
-        <img src="https://images.unsplash.com/photo-1522312346375-d1a52e2b99b3?q=80&w=1200&auto=format&fit=crop">
-        <div class="content">
-            <div class="badge">15% OFF PREPAID</div>
-            <h3>G Shock Watch</h3>
-            <p><span class="old">₹2500</span> <span class="new">₹2000</span></p>
-            <p>Sporty rugged premium watch.</p>
+        
+        <div class="card" onclick="openProduct('Marshall Speaker','3500','Premium Marshall bluetooth speaker.','https://images.unsplash.com/photo-1519677100203-a0e668c92439?q=80&w=1200&auto=format&fit=crop')">
+            <img src="https://images.unsplash.com/photo-1519677100203-a0e668c92439?q=80&w=1200&auto=format&fit=crop">
+            <div class="info">
+                <h3>Marshall Speaker</h3>
+                <p><span class="old">₹5000</span> <span class="new">₹3500</span></p>
+                <p class="desc">Premium Marshall bluetooth speaker.</p>
+            </div>
         </div>
+        
     </div>
+    </section>
     
-    <div class="card" onclick="openProduct('Gucci GG Bag','3500','Luxury designer handbag.','https://images.unsplash.com/photo-1584917865442-de89df76afd3?q=80&w=1200&auto=format&fit=crop')">
-        <img src="https://images.unsplash.com/photo-1584917865442-de89df76afd3?q=80&w=1200&auto=format&fit=crop">
-        <div class="content">
-            <div class="badge">15% OFF PREPAID</div>
-            <h3>Gucci GG Bag</h3>
-            <p><span class="old">₹5500</span> <span class="new">₹3500</span></p>
-            <p>Luxury designer handbag.</p>
+    <section class="section">
+    <h2>Luxury Watches</h2>
+    <div class="grid">
+    
+        <div class="card" onclick="openProduct('Rolex Watch','2000','Luxury Rolex style watch.','https://images.unsplash.com/photo-1547996160-81dfa63595aa?q=80&w=1200&auto=format&fit=crop')">
+            <img src="https://images.unsplash.com/photo-1547996160-81dfa63595aa?q=80&w=1200&auto=format&fit=crop">
+            <div class="info">
+                <h3>Rolex Watch</h3>
+                <p><span class="old">₹5000</span> <span class="new">₹2000</span></p>
+                <p class="desc">Luxury Rolex style watch.</p>
+            </div>
         </div>
-    </div>
-    
-    <div class="card" onclick="openProduct('LV Luxury Bag','3799','Elegant monogram luxury bag.','https://images.unsplash.com/photo-1594223274512-ad4803739b7c?q=80&w=1200&auto=format&fit=crop')">
-        <img src="https://images.unsplash.com/photo-1594223274512-ad4803739b7c?q=80&w=1200&auto=format&fit=crop">
-        <div class="content">
-            <div class="badge">15% OFF PREPAID</div>
-            <h3>LV Luxury Bag</h3>
-            <p><span class="old">₹5000</span> <span class="new">₹3799</span></p>
-            <p>Elegant monogram luxury bag.</p>
+        
+        <div class="card" onclick="openProduct('Cartier Watch','3000','Elegant Cartier inspired watch.','https://images.unsplash.com/photo-1434056886845-dac89ffe9b56?q=80&w=1200&auto=format&fit=crop')">
+            <img src="https://images.unsplash.com/photo-1434056886845-dac89ffe9b56?q=80&w=1200&auto=format&fit=crop">
+            <div class="info">
+                <h3>Cartier Watch</h3>
+                <p><span class="old">₹4500</span> <span class="new">₹3000</span></p>
+                <p class="desc">Elegant Cartier inspired watch.</p>
+            </div>
         </div>
-    </div>
-    
-    <div class="card" onclick="openProduct('Korean Skincare Kit','1799','Premium skincare beauty kit.','https://images.unsplash.com/photo-1556228578-8c89e6adf883?q=80&w=1200&auto=format&fit=crop')">
-        <img src="https://images.unsplash.com/photo-1556228578-8c89e6adf883?q=80&w=1200&auto=format&fit=crop">
-        <div class="content">
-            <div class="badge">15% OFF PREPAID</div>
-            <h3>Korean Skincare Kit</h3>
-            <p><span class="old">₹2500</span> <span class="new">₹1799</span></p>
-            <p>Premium skincare beauty kit.</p>
+        
+        <div class="card" onclick="openProduct('G Shock Watch','2000','Sporty rugged premium watch.','https://images.unsplash.com/photo-1522312346375-d1a52e2b99b3?q=80&w=1200&auto=format&fit=crop')">
+            <img src="https://images.unsplash.com/photo-1522312346375-d1a52e2b99b3?q=80&w=1200&auto=format&fit=crop">
+            <div class="info">
+                <h3>G Shock Watch</h3>
+                <p><span class="old">₹2500</span> <span class="new">₹2000</span></p>
+                <p class="desc">Sporty rugged premium watch.</p>
+            </div>
         </div>
+        
+        <div class="card" onclick="openProduct('Omega Watch','2599','Luxury Omega style watch.','https://images.unsplash.com/photo-1523170335258-f5ed11844a49?q=80&w=1200&auto=format&fit=crop')">
+            <img src="https://images.unsplash.com/photo-1523170335258-f5ed11844a49?q=80&w=1200&auto=format&fit=crop">
+            <div class="info">
+                <h3>Omega Watch</h3>
+                <p><span class="old">₹5000</span> <span class="new">₹2599</span></p>
+                <p class="desc">Luxury Omega style watch.</p>
+            </div>
+        </div>
+        
     </div>
+    </section>
     
-</div>
+    <section class="section">
+    <h2>Designer Bags</h2>
+    <div class="grid">
+    
+        <div class="card" onclick="openProduct('Gucci GG Bag','3500','Luxury Gucci inspired handbag.','https://images.unsplash.com/photo-1584917865442-de89df76afd3?q=80&w=1200&auto=format&fit=crop')">
+            <img src="https://images.unsplash.com/photo-1584917865442-de89df76afd3?q=80&w=1200&auto=format&fit=crop">
+            <div class="info">
+                <h3>Gucci GG Bag</h3>
+                <p><span class="old">₹5500</span> <span class="new">₹3500</span></p>
+                <p class="desc">Luxury Gucci inspired handbag.</p>
+            </div>
+        </div>
+        
+        <div class="card" onclick="openProduct('LV Luxury Bag','3799','Elegant LV inspired bag.','https://images.unsplash.com/photo-1594223274512-ad4803739b7c?q=80&w=1200&auto=format&fit=crop')">
+            <img src="https://images.unsplash.com/photo-1594223274512-ad4803739b7c?q=80&w=1200&auto=format&fit=crop">
+            <div class="info">
+                <h3>LV Luxury Bag</h3>
+                <p><span class="old">₹5000</span> <span class="new">₹3799</span></p>
+                <p class="desc">Elegant LV inspired bag.</p>
+            </div>
+        </div>
+        
+        <div class="card" onclick="openProduct('Coach Bag','6799','Premium Coach designer handbag.','https://images.unsplash.com/photo-1585487000143-ef1f8f4f3f8b?q=80&w=1200&auto=format&fit=crop')">
+            <img src="https://images.unsplash.com/photo-1585487000143-ef1f8f4f3f8b?q=80&w=1200&auto=format&fit=crop">
+            <div class="info">
+                <h3>Coach Bag</h3>
+                <p><span class="old">₹9000</span> <span class="new">₹6799</span></p>
+                <p class="desc">Premium Coach designer handbag.</p>
+            </div>
+        </div>
+        
+    </div>
+    </section>
+    
+    <section class="section">
+    <h2>Beauty</h2>
+    <div class="grid">
+    
+        <div class="card" onclick="openProduct('Korean Skincare Kit','1799','Premium skincare beauty kit.','https://images.unsplash.com/photo-1556228578-8c89e6adf883?q=80&w=1200&auto=format&fit=crop')">
+            <img src="https://images.unsplash.com/photo-1556228578-8c89e6adf883?q=80&w=1200&auto=format&fit=crop">
+            <div class="info">
+                <h3>Korean Skincare Kit</h3>
+                <p><span class="old">₹2500</span> <span class="new">₹1799</span></p>
+                <p class="desc">Premium skincare beauty kit.</p>
+            </div>
+        </div>
+        
+        <div class="card" onclick="openProduct('Lip Gloss Set','799','Luxury glossy lip gloss set.','https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?q=80&w=1200&auto=format&fit=crop')">
+            <img src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?q=80&w=1200&auto=format&fit=crop">
+            <div class="info">
+                <h3>Lip Gloss Set</h3>
+                <p><span class="old">₹1200</span> <span class="new">₹799</span></p>
+                <p class="desc">Luxury glossy lip gloss set.</p>
+            </div>
+        </div>
+        
+    </div>
+    </section>
+    
 
 <div class="modal" id="modal">
 <div class="close" onclick="closeModal()">✕</div>
@@ -169,27 +285,32 @@ input,textarea{width:100%;padding:14px;margin-top:10px;border-radius:10px;border
 
 <div class="modal-content">
 <h1 id="modalTitle"></h1>
-<p id="modalDesc"></p>
 <h2 id="modalPrice"></h2>
+<p id="modalDesc"></p>
 
 <p>⭐ 4.8 Rating</p>
 <p>🚚 Free Shipping</p>
 <p>📦 COD Available</p>
 
-<button onclick="payNow()">Buy With Razorpay</button>
+<button class="pay" onclick="payNow()">Buy With Razorpay</button>
 
 <form action="https://formsubmit.co/topiatoy7@gmail.com" method="POST">
-<input type="hidden" id="productField" name="product">
+<input type="hidden" name="product" id="productField">
 <input type="text" name="name" placeholder="Full Name" required>
 <input type="email" name="email" placeholder="Email Address" required>
 <input type="tel" name="phone" placeholder="Phone Number" required>
 <textarea rows="4" name="address" placeholder="Delivery Address" required></textarea>
-<button type="submit">Place COD Order</button>
+<button type="submit" class="cod">Place COD Order</button>
 </form>
 
 </div>
 </div>
 </div>
+
+<footer>
+<h2>ToyTopia</h2>
+<p>Premium Ecommerce Marketplace</p>
+</footer>
 
 <script>
 let currentProduct="";
@@ -210,15 +331,21 @@ function closeModal(){
 document.getElementById('modal').style.display='none';
 }
 
+window.onclick=function(e){
+if(e.target===document.getElementById('modal')){
+closeModal();
+}
+}
+
 function payNow(){
-var options = {
+var options={
 "key":"rzp_live_RmVZXEibHJhsBR",
-"amount": currentPrice * 100,
+"amount":currentPrice*100,
 "currency":"INR",
 "name":"ToyTopia",
 "description":currentProduct
 };
-var rzp = new Razorpay(options);
+var rzp=new Razorpay(options);
 rzp.open();
 }
 </script>
