@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Toy Topia</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>GiftHub Luxury Store</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 
@@ -13,150 +15,248 @@
 margin:0;
 padding:0;
 box-sizing:border-box;
-font-family:Arial,sans-serif;
+font-family:'Poppins',sans-serif;
 }
 
 body{
 background:#0d0d0d;
 color:white;
+overflow-x:hidden;
 }
 
-nav{
-background:#111;
+header{
 padding:20px;
+background:#111;
 display:flex;
-justify-content:center;
+justify-content:space-between;
 align-items:center;
 position:sticky;
 top:0;
-z-index:1000;
+z-index:999;
+border-bottom:1px solid #222;
 }
 
-nav h1{
-color:#00d9ff;
-font-size:32px;
+.logo{
+font-size:28px;
+font-weight:700;
+color:#ffd700;
+}
+
+nav a{
+color:white;
+margin-left:20px;
+text-decoration:none;
+font-size:14px;
+transition:0.3s;
+}
+
+nav a:hover{
+color:#ffd700;
 }
 
 .hero{
 height:80vh;
+background:linear-gradient(to right,#000000dd,#00000088),
+url('https://images.unsplash.com/photo-1523275335684-37898b6baf30');
+background-size:cover;
+background-position:center;
 display:flex;
-flex-direction:column;
-justify-content:center;
 align-items:center;
-text-align:center;
-padding:20px;
-background:linear-gradient(to right,#000,#1c1c1c);
+padding:50px;
 }
 
-.hero h2{
-font-size:55px;
+.hero-content h1{
+font-size:60px;
 margin-bottom:20px;
 }
 
-.hero p{
-font-size:20px;
+.hero-content p{
+font-size:18px;
+max-width:600px;
 color:#ccc;
+margin-bottom:30px;
+}
+
+.hero button{
+padding:15px 30px;
+background:#ffd700;
+border:none;
+border-radius:8px;
+font-size:16px;
+font-weight:600;
+cursor:pointer;
+}
+
+.section-title{
+padding:50px 30px 20px;
+font-size:32px;
+font-weight:700;
 }
 
 .products{
-padding:60px 20px;
-}
-
-.products h2{
-text-align:center;
-font-size:42px;
-margin-bottom:40px;
-}
-
-.product-grid{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
 gap:25px;
+padding:20px 30px 50px;
 }
 
 .card{
-background:#1a1a1a;
-padding:15px;
+background:#151515;
 border-radius:15px;
-transition:0.3s;
+overflow:hidden;
+transition:0.4s;
+border:1px solid #222;
 }
 
 .card:hover{
 transform:translateY(-8px);
+box-shadow:0 0 20px rgba(255,215,0,0.3);
 }
 
 .card img{
 width:100%;
 height:280px;
 object-fit:cover;
-border-radius:10px;
+}
+
+.card-content{
+padding:15px;
 }
 
 .card h3{
-margin-top:15px;
-font-size:22px;
+font-size:20px;
+margin-bottom:10px;
 }
 
 .price{
-color:#00d9ff;
-font-size:22px;
-margin-top:10px;
-font-weight:bold;
+margin-bottom:10px;
 }
 
 .old{
 text-decoration:line-through;
-color:gray;
+color:#999;
 margin-right:10px;
 }
 
-.buy{
-width:100%;
-padding:12px;
-margin-top:15px;
+.new{
+color:#ffd700;
+font-size:22px;
+font-weight:700;
+}
+
+.desc{
+font-size:13px;
+color:#ccc;
+margin-bottom:15px;
+line-height:1.6;
+}
+
+.btns{
+display:flex;
+gap:10px;
+}
+
+.btn{
+flex:1;
+padding:10px;
 border:none;
-background:#00d9ff;
-font-weight:bold;
 border-radius:8px;
 cursor:pointer;
+font-weight:600;
 }
 
-form{
-display:flex;
-flex-direction:column;
-gap:10px;
-margin-top:15px;
-}
-
-form input{
-padding:12px;
-border:none;
-border-radius:8px;
+.cart-btn{
 background:#222;
 color:white;
 }
 
-.cod{
-padding:12px;
-border:none;
-border-radius:8px;
-background:#333;
-color:white;
-font-weight:bold;
-cursor:pointer;
+.buy-btn{
+background:#ffd700;
+color:black;
 }
 
 footer{
-padding:20px;
-text-align:center;
 background:#111;
-margin-top:40px;
+padding:40px;
+text-align:center;
+border-top:1px solid #222;
+}
+
+footer p{
+color:#888;
+margin-top:10px;
+}
+
+.whatsapp{
+position:fixed;
+bottom:20px;
+right:20px;
+background:#25D366;
+width:60px;
+height:60px;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:30px;
+color:white;
+text-decoration:none;
+box-shadow:0 0 20px rgba(0,0,0,0.4);
+z-index:999;
+}
+
+.cart-box{
+position:fixed;
+top:90px;
+right:20px;
+background:#151515;
+padding:20px;
+border-radius:15px;
+width:320px;
+max-height:500px;
+overflow-y:auto;
+display:none;
+z-index:999;
+border:1px solid #333;
+}
+
+.cart-box h2{
+margin-bottom:15px;
+}
+
+.cart-item{
+margin-bottom:10px;
+padding-bottom:10px;
+border-bottom:1px solid #333;
+}
+
+.total{
+margin-top:15px;
+font-size:20px;
+font-weight:700;
+color:#ffd700;
+}
+
+.checkout-btn{
+width:100%;
+margin-top:15px;
+padding:12px;
+background:#ffd700;
+border:none;
+border-radius:8px;
+font-weight:700;
+cursor:pointer;
 }
 
 @media(max-width:768px){
 
-.hero h2{
-font-size:34px;
+.hero-content h1{
+font-size:38px;
+}
+
+.hero{
+padding:20px;
+height:70vh;
 }
 
 }
@@ -166,314 +266,324 @@ font-size:34px;
 
 <body>
 
+<header>
+<div class="logo">GiftHub</div>
+
 <nav>
-<h1>Toy Topia</h1>
+<a href="#">Home</a>
+<a href="#anime">Anime</a>
+<a href="#gadgets">Gadgets</a>
+<a href="#watches">Watches</a>
+<a href="#bags">Bags</a>
+<a href="#" onclick="toggleCart()">Cart 🛒</a>
 </nav>
+</header>
 
 <section class="hero">
-<h2>Trending Luxury Products</h2>
-<p>Premium Bags, Toys & Watches</p>
+<div class="hero-content">
+<h1>Luxury Meets Anime</h1>
+<p>Premium gadgets, luxury watches, anime collectibles and designer bags at unbeatable prices.</p>
+<button onclick="document.getElementById('anime').scrollIntoView()">Shop Now</button>
+</div>
 </section>
 
-<section class="products">
+<div class="cart-box" id="cartBox">
+<h2>Your Cart</h2>
+<div id="cartItems"></div>
+<div class="total">Total: ₹<span id="total">0</span></div>
+<button class="checkout-btn" onclick="payNow()">Pay Now</button>
+</div>
 
-<h2>Featured Products</h2>
+<!-- ANIME -->
 
-<div class="product-grid">
+<h2 class="section-title" id="anime">Anime Collection</h2>
 
-<!-- PRODUCT 1 -->
+<div class="products">
 
 <div class="card">
+<img src="https://i.imgur.com/K4wY7sA.jpeg">
+<div class="card-content">
+<h3>One Piece Keychain</h3>
+<div class="price">
+<span class="old">₹200</span>
+<span class="new">₹150</span>
+</div>
+<p class="desc">Premium anime keychain perfect for One Piece fans.</p>
+<div class="btns">
+<button class="btn cart-btn" onclick="addToCart('One Piece Keychain',150)">Add</button>
+<button class="btn buy-btn" onclick="buySingle('One Piece Keychain',150)">Buy</button>
+</div>
+</div>
+</div>
 
-<img src="https://images.unsplash.com/photo-1618336753974-aae8e04506aa?q=80&w=1000">
-
-<h3>Labubu Doll</h3>
-
-<p class="price">₹799</p>
-
-<button class="buy" onclick="payNow('Labubu Doll',799)">
-Pay with Razorpay
-</button>
-
-<form action="https://formsubmit.co/topiatoy7@gmail.com" method="POST">
-
-<input type="hidden" name="_subject" value="New Toy Topia Order">
-
-<input type="hidden" name="_captcha" value="false">
-
-<input type="hidden" name="_autoresponse" value="Thank you for shopping at Toy Topia. Your order has been confirmed successfully.">
-
-<input type="text" name="name" placeholder="Full Name" required>
-
-<input type="email" name="email" placeholder="Email Address" required>
-
-<input type="text" name="address" placeholder="Delivery Address" required>
-
-<input type="tel" name="phone" placeholder="Phone Number" required>
-
-<input type="hidden" name="product" value="Labubu Doll">
-
-<input type="hidden" name="price" value="799">
-
-<button type="submit" class="cod">
-Place COD Order
-</button>
-
-</form>
+<div class="card">
+<img src="https://i.imgur.com/tbM6M6x.jpeg">
+<div class="card-content">
+<h3>Itachi Keychain</h3>
+<div class="price">
+<span class="old">₹200</span>
+<span class="new">₹150</span>
+</div>
+<p class="desc">Cute Itachi anime collectible keychain.</p>
+<div class="btns">
+<button class="btn cart-btn" onclick="addToCart('Itachi Keychain',150)">Add</button>
+<button class="btn buy-btn" onclick="buySingle('Itachi Keychain',150)">Buy</button>
+</div>
+</div>
+</div>
 
 </div>
 
-<!-- PRODUCT 2 -->
+<!-- GADGETS -->
+
+<h2 class="section-title" id="gadgets">Premium Gadgets</h2>
+
+<div class="products">
 
 <div class="card">
+<img src="https://i.imgur.com/F7YwXxW.jpeg">
+<div class="card-content">
+<h3>RGB Speaker</h3>
+<div class="price">
+<span class="old">₹2500</span>
+<span class="new">₹1599</span>
+</div>
+<p class="desc">Portable RGB bluetooth speaker with powerful bass.</p>
+<div class="btns">
+<button class="btn cart-btn" onclick="addToCart('RGB Speaker',1599)">Add</button>
+<button class="btn buy-btn" onclick="buySingle('RGB Speaker',1599)">Buy</button>
+</div>
+</div>
+</div>
 
-<img src="https://images.unsplash.com/photo-1584917865442-de89df76afd3?q=80&w=1000">
-
-<h3>Balmain Paris P69 Bag</h3>
-
-<p class="price">₹3499</p>
-
-<button class="buy" onclick="payNow('Balmain Paris P69 Bag',3499)">
-Pay with Razorpay
-</button>
-
-<form action="https://formsubmit.co/topiatoy7@gmail.com" method="POST">
-
-<input type="hidden" name="_subject" value="New Toy Topia Order">
-
-<input type="hidden" name="_captcha" value="false">
-
-<input type="hidden" name="_autoresponse" value="Thank you for shopping at Toy Topia. Your order has been confirmed successfully.">
-
-<input type="text" name="name" placeholder="Full Name" required>
-
-<input type="email" name="email" placeholder="Email Address" required>
-
-<input type="text" name="address" placeholder="Delivery Address" required>
-
-<input type="tel" name="phone" placeholder="Phone Number" required>
-
-<input type="hidden" name="product" value="Balmain Paris P69 Bag">
-
-<input type="hidden" name="price" value="3499">
-
-<button type="submit" class="cod">
-Place COD Order
-</button>
-
-</form>
+<div class="card">
+<img src="https://i.imgur.com/WV9rRzC.jpeg">
+<div class="card-content">
+<h3>AirPods Max</h3>
+<div class="price">
+<span class="old">₹4000</span>
+<span class="new">₹2500</span>
+</div>
+<p class="desc">Luxury wireless headphones with premium design.</p>
+<div class="btns">
+<button class="btn cart-btn" onclick="addToCart('AirPods Max',2500)">Add</button>
+<button class="btn buy-btn" onclick="buySingle('AirPods Max',2500)">Buy</button>
+</div>
+</div>
+</div>
 
 </div>
 
-<!-- PRODUCT 3 -->
+<!-- WATCHES -->
+
+<h2 class="section-title" id="watches">Luxury Watches</h2>
+
+<div class="products">
 
 <div class="card">
-
-<img src="https://images.unsplash.com/photo-1548036328-c9fa89d128fa?q=80&w=1000">
-
-<h3>LV Holdall P60 Bag</h3>
-
-<p class="price">
-<span class="old">₹3000</span>
-₹1500
-</p>
-
-<button class="buy" onclick="payNow('LV Holdall P60 Bag',1500)">
-Pay with Razorpay
-</button>
-
-<form action="https://formsubmit.co/topiatoy7@gmail.com" method="POST">
-
-<input type="hidden" name="_subject" value="New Toy Topia Order">
-
-<input type="hidden" name="_captcha" value="false">
-
-<input type="hidden" name="_autoresponse" value="Thank you for shopping at Toy Topia. Your order has been confirmed successfully.">
-
-<input type="text" name="name" placeholder="Full Name" required>
-
-<input type="email" name="email" placeholder="Email Address" required>
-
-<input type="text" name="address" placeholder="Delivery Address" required>
-
-<input type="tel" name="phone" placeholder="Phone Number" required>
-
-<input type="hidden" name="product" value="LV Holdall P60 Bag">
-
-<input type="hidden" name="price" value="1500">
-
-<button type="submit" class="cod">
-Place COD Order
-</button>
-
-</form>
-
-</div>
-
-<!-- PRODUCT 4 -->
-
-<div class="card">
-
-<img src="https://images.unsplash.com/photo-1594223274512-ad4803739b7c?q=80&w=1000">
-
-<h3>Gucci Jackie GG Monogram Bag</h3>
-
-<p class="price">
+<img src="https://i.imgur.com/INz7u6M.jpeg">
+<div class="card-content">
+<h3>Rolex Watch</h3>
+<div class="price">
 <span class="old">₹5000</span>
-₹2000
-</p>
-
-<button class="buy" onclick="payNow('Gucci Jackie GG Monogram Bag',2000)">
-Pay with Razorpay
-</button>
-
-<form action="https://formsubmit.co/topiatoy7@gmail.com" method="POST">
-
-<input type="hidden" name="_subject" value="New Toy Topia Order">
-
-<input type="hidden" name="_captcha" value="false">
-
-<input type="hidden" name="_autoresponse" value="Thank you for shopping at Toy Topia. Your order has been confirmed successfully.">
-
-<input type="text" name="name" placeholder="Full Name" required>
-
-<input type="email" name="email" placeholder="Email Address" required>
-
-<input type="text" name="address" placeholder="Delivery Address" required>
-
-<input type="tel" name="phone" placeholder="Phone Number" required>
-
-<input type="hidden" name="product" value="Gucci Jackie GG Monogram Bag">
-
-<input type="hidden" name="price" value="2000">
-
-<button type="submit" class="cod">
-Place COD Order
-</button>
-
-</form>
-
+<span class="new">₹2000</span>
 </div>
-
-<!-- PRODUCT 5 -->
+<p class="desc">Luxury Rolex inspired premium watch.</p>
+<div class="btns">
+<button class="btn cart-btn" onclick="addToCart('Rolex Watch',2000)">Add</button>
+<button class="btn buy-btn" onclick="buySingle('Rolex Watch',2000)">Buy</button>
+</div>
+</div>
+</div>
 
 <div class="card">
-
-<img src="https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?q=80&w=1000">
-
-<h3>Coach Tabby Shoulder Bag</h3>
-
-<p class="price">₹1500</p>
-
-<button class="buy" onclick="payNow('Coach Tabby Shoulder Bag',1500)">
-Pay with Razorpay
-</button>
-
-<form action="https://formsubmit.co/topiatoy7@gmail.com" method="POST">
-
-<input type="hidden" name="_subject" value="New Toy Topia Order">
-
-<input type="hidden" name="_captcha" value="false">
-
-<input type="hidden" name="_autoresponse" value="Thank you for shopping at Toy Topia. Your order has been confirmed successfully.">
-
-<input type="text" name="name" placeholder="Full Name" required>
-
-<input type="email" name="email" placeholder="Email Address" required>
-
-<input type="text" name="address" placeholder="Delivery Address" required>
-
-<input type="tel" name="phone" placeholder="Phone Number" required>
-
-<input type="hidden" name="product" value="Coach Tabby Shoulder Bag">
-
-<input type="hidden" name="price" value="1500">
-
-<button type="submit" class="cod">
-Place COD Order
-</button>
-
-</form>
+<img src="https://i.imgur.com/Fv5vZfQ.jpeg">
+<div class="card-content">
+<h3>G-Shock Watch</h3>
+<div class="price">
+<span class="old">₹2500</span>
+<span class="new">₹2000</span>
+</div>
+<p class="desc">Premium sporty G-Shock inspired watch.</p>
+<div class="btns">
+<button class="btn cart-btn" onclick="addToCart('G-Shock Watch',2000)">Add</button>
+<button class="btn buy-btn" onclick="buySingle('G-Shock Watch',2000)">Buy</button>
+</div>
+</div>
+</div>
 
 </div>
 
-<!-- PRODUCT 6 -->
+<!-- BAGS -->
+
+<h2 class="section-title" id="bags">Designer Bags</h2>
+
+<div class="products">
 
 <div class="card">
+<img src="https://i.imgur.com/v2W4w4B.jpeg">
+<div class="card-content">
+<h3>Gucci Bag</h3>
+<div class="price">
+<span class="old">₹5000</span>
+<span class="new">₹3199</span>
+</div>
+<p class="desc">Luxury Gucci inspired shoulder bag.</p>
+<div class="btns">
+<button class="btn cart-btn" onclick="addToCart('Gucci Bag',3199)">Add</button>
+<button class="btn buy-btn" onclick="buySingle('Gucci Bag',3199)">Buy</button>
+</div>
+</div>
+</div>
 
-<img src="https://images.unsplash.com/photo-1523170335258-f5ed11844a49?q=80&w=1000">
-
-<h3>Rolex Oyster Watch</h3>
-
-<p class="price">₹3500</p>
-
-<button class="buy" onclick="payNow('Rolex Oyster Watch',3500)">
-Pay with Razorpay
-</button>
-
-<form action="https://formsubmit.co/topiatoy7@gmail.com" method="POST">
-
-<input type="hidden" name="_subject" value="New Toy Topia Order">
-
-<input type="hidden" name="_captcha" value="false">
-
-<input type="hidden" name="_autoresponse" value="Thank you for shopping at Toy Topia. Your order has been confirmed successfully.">
-
-<input type="text" name="name" placeholder="Full Name" required>
-
-<input type="email" name="email" placeholder="Email Address" required>
-
-<input type="text" name="address" placeholder="Delivery Address" required>
-
-<input type="tel" name="phone" placeholder="Phone Number" required>
-
-<input type="hidden" name="product" value="Rolex Oyster Watch">
-
-<input type="hidden" name="price" value="3500">
-
-<button type="submit" class="cod">
-Place COD Order
-</button>
-
-</form>
-
+<div class="card">
+<img src="https://i.imgur.com/g1mJxD4.jpeg">
+<div class="card-content">
+<h3>LV Luxury Bag</h3>
+<div class="price">
+<span class="old">₹5000</span>
+<span class="new">₹3799</span>
+</div>
+<p class="desc">Premium LV inspired handbag with luxury finish.</p>
+<div class="btns">
+<button class="btn cart-btn" onclick="addToCart('LV Luxury Bag',3799)">Add</button>
+<button class="btn buy-btn" onclick="buySingle('LV Luxury Bag',3799)">Buy</button>
+</div>
+</div>
 </div>
 
 </div>
-
-</section>
 
 <footer>
-© 2026 Toy Topia. All Rights Reserved.
+<h2>GiftHub</h2>
+<p>Luxury Lifestyle Marketplace</p>
+<p>© 2026 All Rights Reserved</p>
 </footer>
+
+<a class="whatsapp" href="https://wa.me/919999999999">☎</a>
 
 <script>
 
-function payNow(product, amount){
+let cart = [];
+let total = 0;
 
-var options = {
+function addToCart(name,price){
 
-"key": "rzp_live_RmVZXEibHJhsBR",
+cart.push({name,price});
+total += price;
 
-"amount": amount * 100,
+updateCart();
 
-"currency": "INR",
-
-"name": "Toy Topia",
-
-"description": product,
-
-handler: function (response){
-
-alert("Payment Successful!");
+alert(name + " added to cart");
 
 }
 
+function updateCart(){
+
+let cartItems = document.getElementById("cartItems");
+cartItems.innerHTML = "";
+
+cart.forEach(item=>{
+
+cartItems.innerHTML += `
+<div class="cart-item">
+${item.name} - ₹${item.price}
+</div>
+`;
+
+});
+
+document.getElementById("total").innerText = total;
+
+}
+
+function toggleCart(){
+
+let cartBox = document.getElementById("cartBox");
+
+if(cartBox.style.display=="block"){
+cartBox.style.display="none";
+}else{
+cartBox.style.display="block";
+}
+
+}
+
+function buySingle(name,price){
+
+var options = {
+"key": "rzp_live_RmVZXEibHJhsBR",
+"amount": price * 100,
+"currency": "INR",
+"name": "GiftHub",
+"description": name,
+"handler": function (response){
+
+alert("Payment Successful!");
+
+generateInvoice(name,price,response.razorpay_payment_id);
+
+}
 };
 
 var rzp1 = new Razorpay(options);
-
 rzp1.open();
+
+}
+
+function payNow(){
+
+if(cart.length==0){
+alert("Cart Empty");
+return;
+}
+
+var options = {
+"key": "rzp_live_RmVZXEibHJhsBR",
+"amount": total * 100,
+"currency": "INR",
+"name": "GiftHub",
+"description": "Order Payment",
+"handler": function (response){
+
+alert("Payment Successful!");
+
+generateInvoice("GiftHub Order",total,response.razorpay_payment_id);
+
+}
+};
+
+var rzp1 = new Razorpay(options);
+rzp1.open();
+
+}
+
+function generateInvoice(product,amount,paymentId){
+
+let invoice = `
+INVOICE
+
+Store: GiftHub
+
+Product: ${product}
+
+Amount Paid: ₹${amount}
+
+Payment ID:
+${paymentId}
+
+Thank You For Shopping!
+`;
+
+let blob = new Blob([invoice], { type: 'text/plain' });
+
+let a = document.createElement('a');
+
+a.href = URL.createObjectURL(blob);
+
+a.download = "invoice.txt";
+
+a.click();
 
 }
 
