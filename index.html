@@ -1,552 +1,307 @@
+
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset='UTF-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0'>
 <title>ToyTopia</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
 <style>
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:'Poppins',sans-serif;
-scroll-behavior:smooth;
-}
-
-body{
-background:#000;
-color:#fff;
-}
-
-header{
-position:fixed;
-top:0;
-width:100%;
-background:#000;
-padding:18px 6%;
-display:flex;
-justify-content:space-between;
-align-items:center;
-z-index:1000;
-border-bottom:1px solid #222;
-}
-
-.logo{
-display:flex;
-align-items:center;
-gap:10px;
-font-size:34px;
-font-weight:700;
-color:#ffd000;
-}
-
-.logo img{
-width:55px;
-height:55px;
-border-radius:50%;
-}
-
-nav{
-display:flex;
-gap:22px;
-}
-
-nav a{
-color:#fff;
-text-decoration:none;
-font-size:18px;
-font-weight:500;
-}
-
-nav a:hover{
-color:#ffd000;
-}
-
-.hero{
-height:100vh;
-background:linear-gradient(rgba(0,0,0,.65),rgba(0,0,0,.75)),
-url('https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=1974&auto=format&fit=crop');
-background-size:cover;
-background-position:center;
-display:flex;
-align-items:center;
-justify-content:center;
-text-align:center;
-padding:20px;
-}
-
-.hero-content h1{
-font-size:70px;
-font-weight:700;
-margin-bottom:15px;
-}
-
-.hero-content span{
-color:#ffd000;
-}
-
-.hero-content p{
-font-size:20px;
-max-width:700px;
-margin:auto;
-margin-bottom:25px;
-color:#ddd;
-}
-
-.hero-content button{
-padding:14px 35px;
-border:none;
-background:#ffd000;
-color:#000;
-font-size:18px;
-font-weight:700;
-border-radius:10px;
-cursor:pointer;
-}
-
-section{
-padding:110px 6%;
-}
-
-.section-title{
-font-size:48px;
-margin-bottom:45px;
-font-weight:700;
-}
-
-.products{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-gap:28px;
-}
-
-.card{
-background:#111;
-border-radius:18px;
-overflow:hidden;
-transition:.3s;
-border:1px solid #222;
-}
-
-.card:hover{
-transform:translateY(-8px);
-}
-
-.card img{
-width:100%;
-height:280px;
-object-fit:cover;
-}
-
-.card-content{
-padding:20px;
-}
-
-.card h3{
-font-size:24px;
-margin-bottom:10px;
-}
-
-.price{
-display:flex;
-gap:12px;
-align-items:center;
-margin-bottom:15px;
-}
-
-.old{
-text-decoration:line-through;
-color:#777;
-font-size:18px;
-}
-
-.new{
-color:#ffd000;
-font-size:30px;
-font-weight:700;
-}
-
-.desc{
-color:#ccc;
-font-size:15px;
-margin-bottom:18px;
-line-height:1.6;
-}
-
-.buttons{
-display:flex;
-gap:12px;
-}
-
-.buttons button{
-flex:1;
-padding:13px;
-border:none;
-border-radius:10px;
-font-size:16px;
-font-weight:600;
-cursor:pointer;
-}
-
-.add{
-background:#222;
-color:#fff;
-}
-
-.buy{
-background:#ffd000;
-color:#000;
-}
-
-.cod{
-margin-top:10px;
-font-size:14px;
-color:#00ff88;
-font-weight:600;
-}
-
-.order-box{
-background:#111;
-padding:35px;
-border-radius:20px;
-margin-top:50px;
-border:1px solid #222;
-}
-
-.order-box h2{
-margin-bottom:20px;
-font-size:35px;
-}
-
-.input-group{
-margin-bottom:18px;
-}
-
-.input-group input,
-.input-group textarea{
-width:100%;
-padding:16px;
-background:#000;
-border:1px solid #333;
-border-radius:10px;
-color:#fff;
-font-size:16px;
-}
-
-.submit-btn{
-width:100%;
-padding:16px;
-background:#ffd000;
-border:none;
-font-size:18px;
-font-weight:700;
-border-radius:12px;
-cursor:pointer;
-}
-
-footer{
-padding:30px;
-text-align:center;
-background:#111;
-margin-top:50px;
-border-top:1px solid #222;
-}
-
-.whatsapp{
-position:fixed;
-bottom:25px;
-right:25px;
-background:#25D366;
-width:70px;
-height:70px;
-border-radius:50%;
-display:flex;
-justify-content:center;
-align-items:center;
-font-size:34px;
-text-decoration:none;
-color:#fff;
-z-index:999;
-}
-
-@media(max-width:768px){
-
-header{
-flex-direction:column;
-gap:15px;
-}
-
-nav{
-flex-wrap:wrap;
-justify-content:center;
-}
-
-.hero-content h1{
-font-size:42px;
-}
-
-.section-title{
-font-size:35px;
-}
-}
+body{margin:0;background:#000;color:white;font-family:Arial}
+header{background:#111;padding:20px;text-align:center;font-size:40px;color:#ffd700;font-weight:bold;position:sticky;top:0}
+.hero{padding:80px 20px;text-align:center;background:#111}
+.hero h1{font-size:60px}
+.hero p{color:#ccc;font-size:20px}
+section{padding:40px 5%}
+section h2{font-size:40px;color:#ffd700}
+.products{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:25px}
+.card{background:#111;border-radius:15px;overflow:hidden;border:1px solid #222}
+.card img{width:100%;height:260px;object-fit:cover}
+.content{padding:18px}
+.old{text-decoration:line-through;color:gray}
+.new{color:#ffd700;font-size:28px;font-weight:bold}
+.offer{color:#00ff99;font-weight:bold}
+button{width:100%;padding:14px;background:#ffd700;border:none;border-radius:10px;font-weight:bold;margin-top:12px}
+.checkout{margin:40px 5%;background:#111;padding:30px;border-radius:15px}
+input,textarea{width:100%;padding:14px;margin-top:10px;background:#000;border:1px solid #333;color:white;border-radius:10px}
+.submit{background:#ffd700}
+footer{background:#111;text-align:center;padding:25px;margin-top:40px}
 </style>
 </head>
-
 <body>
 
-<header>
+<header>ToyTopia</header>
 
-<div class="logo">
-<img src="https://cdn-icons-png.flaticon.com/512/3081/3081559.png">
-ToyTopia
+<div class='hero'>
+<h1>Luxury Meets Anime</h1>
+<p>Anime • Gadgets • Watches • Designer Bags</p>
 </div>
 
-<nav>
-<a href="#anime">Anime</a>
-<a href="#gadgets">Gadgets</a>
-<a href="#watches">Watches</a>
-<a href="#bags">Bags</a>
-<a href="#order">Order</a>
-</nav>
+<section><h2>Anime Collection</h2><div class='products'>
+        <div class='card'>
+        <img src='https://images.unsplash.com/photo-1578632767115-351597cf2477?q=80&w=1200&auto=format&fit=crop'>
+        <div class='content'>
+        <h3>Naruto Action Figure</h3>
+        <p><span class='old'>₹2500</span> <span class='new'>₹1500</span></p>
+        <p>Premium Naruto collectible figure perfect for anime lovers.</p>
+        <p class='offer'>15% OFF on Prepaid Orders</p>
+        <button>Add To Cart</button>
+        </div></div>
+        
+        <div class='card'>
+        <img src='https://images.unsplash.com/photo-1608889175123-8ee362201f81?q=80&w=1200&auto=format&fit=crop'>
+        <div class='content'>
+        <h3>Itachi Uchiha Figure</h3>
+        <p><span class='old'>₹4000</span> <span class='new'>₹2500</span></p>
+        <p>Detailed Itachi Uchiha anime collectible with premium finish.</p>
+        <p class='offer'>15% OFF on Prepaid Orders</p>
+        <button>Add To Cart</button>
+        </div></div>
+        
+        <div class='card'>
+        <img src='https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=1200&auto=format&fit=crop'>
+        <div class='content'>
+        <h3>Monkey D Luffy Figure</h3>
+        <p><span class='old'>₹5000</span> <span class='new'>₹3599</span></p>
+        <p>Premium One Piece Luffy action figure for collectors.</p>
+        <p class='offer'>15% OFF on Prepaid Orders</p>
+        <button>Add To Cart</button>
+        </div></div>
+        
+        <div class='card'>
+        <img src='https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=1200&auto=format&fit=crop'>
+        <div class='content'>
+        <h3>Shanks & Luffy Limited Edition</h3>
+        <p><span class='old'>₹12000</span> <span class='new'>₹8000</span></p>
+        <p>Rare anime collectible limited edition set.</p>
+        <p class='offer'>15% OFF on Prepaid Orders</p>
+        <button>Add To Cart</button>
+        </div></div>
+        </div></section><section><h2>Keychains</h2><div class='products'>
+        <div class='card'>
+        <img src='https://images.unsplash.com/photo-1585386959984-a41552231658?q=80&w=1200&auto=format&fit=crop'>
+        <div class='content'>
+        <h3>One Piece Keychain</h3>
+        <p><span class='old'>₹200</span> <span class='new'>₹150</span></p>
+        <p>Cute anime keychain for bags and keys.</p>
+        <p class='offer'>15% OFF on Prepaid Orders</p>
+        <button>Add To Cart</button>
+        </div></div>
+        
+        <div class='card'>
+        <img src='https://images.unsplash.com/photo-1523275335684-37898b6baf30?q=80&w=1200&auto=format&fit=crop'>
+        <div class='content'>
+        <h3>Itachi Keychain</h3>
+        <p><span class='old'>₹200</span> <span class='new'>₹150</span></p>
+        <p>Stylish Naruto Itachi keychain collectible.</p>
+        <p class='offer'>15% OFF on Prepaid Orders</p>
+        <button>Add To Cart</button>
+        </div></div>
+        </div></section><section><h2>Gadgets</h2><div class='products'>
+        <div class='card'>
+        <img src='https://images.unsplash.com/photo-1585386959984-a41552231658?q=80&w=1200&auto=format&fit=crop'>
+        <div class='content'>
+        <h3>RGB Speaker</h3>
+        <p><span class='old'>₹2500</span> <span class='new'>₹1599</span></p>
+        <p>Portable RGB bluetooth speaker with deep bass.</p>
+        <p class='offer'>15% OFF on Prepaid Orders</p>
+        <button>Add To Cart</button>
+        </div></div>
+        
+        <div class='card'>
+        <img src='https://images.unsplash.com/photo-1546435770-a3e426bf472b?q=80&w=1200&auto=format&fit=crop'>
+        <div class='content'>
+        <h3>AirPods Max</h3>
+        <p><span class='old'>₹4000</span> <span class='new'>₹2500</span></p>
+        <p>Luxury wireless headphones with premium sound.</p>
+        <p class='offer'>15% OFF on Prepaid Orders</p>
+        <button>Add To Cart</button>
+        </div></div>
+        
+        <div class='card'>
+        <img src='https://images.unsplash.com/photo-1505740420928-5e560c06d30e?q=80&w=1200&auto=format&fit=crop'>
+        <div class='content'>
+        <h3>Marshall Speaker</h3>
+        <p><span class='old'>₹5000</span> <span class='new'>₹3500</span></p>
+        <p>Vintage-style premium speaker with rich sound.</p>
+        <p class='offer'>15% OFF on Prepaid Orders</p>
+        <button>Add To Cart</button>
+        </div></div>
+        
+        <div class='card'>
+        <img src='https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1200&auto=format&fit=crop'>
+        <div class='content'>
+        <h3>Mini Printer</h3>
+        <p><span class='old'>₹3000</span> <span class='new'>₹2000</span></p>
+        <p>Portable mini printer for aesthetic notes and stickers.</p>
+        <p class='offer'>15% OFF on Prepaid Orders</p>
+        <button>Add To Cart</button>
+        </div></div>
+        
+        <div class='card'>
+        <img src='https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?q=80&w=1200&auto=format&fit=crop'>
+        <div class='content'>
+        <h3>Aesthetic Bedside Lamp Clock</h3>
+        <p><span class='old'>₹2500</span> <span class='new'>₹1799</span></p>
+        <p>Modern bedside lamp with aesthetic clock design.</p>
+        <p class='offer'>15% OFF on Prepaid Orders</p>
+        <button>Add To Cart</button>
+        </div></div>
+        </div></section><section><h2>Watches</h2><div class='products'>
+        <div class='card'>
+        <img src='https://images.unsplash.com/photo-1547996160-81dfa63595aa?q=80&w=1200&auto=format&fit=crop'>
+        <div class='content'>
+        <h3>Rolex Watch</h3>
+        <p><span class='old'>₹5000</span> <span class='new'>₹2000</span></p>
+        <p>Luxury inspired Rolex watch.</p>
+        <p class='offer'>15% OFF on Prepaid Orders</p>
+        <button>Add To Cart</button>
+        </div></div>
+        
+        <div class='card'>
+        <img src='https://images.unsplash.com/photo-1523170335258-f5ed11844a49?q=80&w=1200&auto=format&fit=crop'>
+        <div class='content'>
+        <h3>Omega Watch</h3>
+        <p><span class='old'>₹5000</span> <span class='new'>₹2599</span></p>
+        <p>Elegant Omega style premium watch.</p>
+        <p class='offer'>15% OFF on Prepaid Orders</p>
+        <button>Add To Cart</button>
+        </div></div>
+        
+        <div class='card'>
+        <img src='https://images.unsplash.com/photo-1612817159949-195b6eb9e31a?q=80&w=1200&auto=format&fit=crop'>
+        <div class='content'>
+        <h3>RM Watch</h3>
+        <p><span class='old'>₹9000</span> <span class='new'>₹4500</span></p>
+        <p>Richard Mille inspired luxury sports watch.</p>
+        <p class='offer'>15% OFF on Prepaid Orders</p>
+        <button>Add To Cart</button>
+        </div></div>
+        
+        <div class='card'>
+        <img src='https://images.unsplash.com/photo-1434056886845-dac89ffe9b56?q=80&w=1200&auto=format&fit=crop'>
+        <div class='content'>
+        <h3>Cartier Watch</h3>
+        <p><span class='old'>₹4500</span> <span class='new'>₹3000</span></p>
+        <p>Elegant Cartier style luxury watch.</p>
+        <p class='offer'>15% OFF on Prepaid Orders</p>
+        <button>Add To Cart</button>
+        </div></div>
+        
+        <div class='card'>
+        <img src='https://images.unsplash.com/photo-1522312346375-d1a52e2b99b3?q=80&w=1200&auto=format&fit=crop'>
+        <div class='content'>
+        <h3>G-Shock Watch</h3>
+        <p><span class='old'>₹2500</span> <span class='new'>₹2000</span></p>
+        <p>Durable sporty G-Shock inspired watch.</p>
+        <p class='offer'>15% OFF on Prepaid Orders</p>
+        <button>Add To Cart</button>
+        </div></div>
+        
+        <div class='card'>
+        <img src='https://images.unsplash.com/photo-1508057198894-247b23fe5ade?q=80&w=1200&auto=format&fit=crop'>
+        <div class='content'>
+        <h3>Hublot Watch</h3>
+        <p><span class='old'>₹7000</span> <span class='new'>₹4000</span></p>
+        <p>Premium Hublot style chronograph watch.</p>
+        <p class='offer'>15% OFF on Prepaid Orders</p>
+        <button>Add To Cart</button>
+        </div></div>
+        </div></section><section><h2>Bags</h2><div class='products'>
+        <div class='card'>
+        <img src='https://images.unsplash.com/photo-1584917865442-de89df76afd3?q=80&w=1200&auto=format&fit=crop'>
+        <div class='content'>
+        <h3>Gucci Bag</h3>
+        <p><span class='old'>₹5000</span> <span class='new'>₹3199</span></p>
+        <p>Luxury Gucci inspired handbag.</p>
+        <p class='offer'>15% OFF on Prepaid Orders</p>
+        <button>Add To Cart</button>
+        </div></div>
+        
+        <div class='card'>
+        <img src='https://images.unsplash.com/photo-1594223274512-ad4803739b7c?q=80&w=1200&auto=format&fit=crop'>
+        <div class='content'>
+        <h3>Gucci GG Bag</h3>
+        <p><span class='old'>₹5500</span> <span class='new'>₹3500</span></p>
+        <p>Premium designer shoulder bag.</p>
+        <p class='offer'>15% OFF on Prepaid Orders</p>
+        <button>Add To Cart</button>
+        </div></div>
+        
+        <div class='card'>
+        <img src='https://images.unsplash.com/photo-1548036328-c9fa89d128fa?q=80&w=1200&auto=format&fit=crop'>
+        <div class='content'>
+        <h3>Gucci Mini Bag</h3>
+        <p><span class='old'>₹6000</span> <span class='new'>₹2799</span></p>
+        <p>Best deal luxury mini handbag.</p>
+        <p class='offer'>15% OFF on Prepaid Orders</p>
+        <button>Add To Cart</button>
+        </div></div>
+        
+        <div class='card'>
+        <img src='https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?q=80&w=1200&auto=format&fit=crop'>
+        <div class='content'>
+        <h3>LV Bag</h3>
+        <p><span class='old'>₹5000</span> <span class='new'>₹3799</span></p>
+        <p>Classic LV inspired handbag.</p>
+        <p class='offer'>15% OFF on Prepaid Orders</p>
+        <button>Add To Cart</button>
+        </div></div>
+        
+        <div class='card'>
+        <img src='https://images.unsplash.com/photo-1559563458-527698bf5295?q=80&w=1200&auto=format&fit=crop'>
+        <div class='content'>
+        <h3>Coach Bag</h3>
+        <p><span class='old'>₹9000</span> <span class='new'>₹6799</span></p>
+        <p>Elegant Coach luxury handbag.</p>
+        <p class='offer'>15% OFF on Prepaid Orders</p>
+        <button>Add To Cart</button>
+        </div></div>
+        
+        <div class='card'>
+        <img src='https://images.unsplash.com/photo-1529139574466-a303027c1d8b?q=80&w=1200&auto=format&fit=crop'>
+        <div class='content'>
+        <h3>DG Bag</h3>
+        <p><span class='old'>₹25000</span> <span class='new'>₹11000</span></p>
+        <p>Luxury Dolce & Gabbana inspired bag.</p>
+        <p class='offer'>15% OFF on Prepaid Orders</p>
+        <button>Add To Cart</button>
+        </div></div>
+        
+        <div class='card'>
+        <img src='https://images.unsplash.com/photo-1566150905458-1bf1fc113f0d?q=80&w=1200&auto=format&fit=crop'>
+        <div class='content'>
+        <h3>Armani Bag</h3>
+        <p><span class='old'>₹6000</span> <span class='new'>₹4500</span></p>
+        <p>Minimal luxury Armani inspired bag.</p>
+        <p class='offer'>15% OFF on Prepaid Orders</p>
+        <button>Add To Cart</button>
+        </div></div>
+        
+        <div class='card'>
+        <img src='https://images.unsplash.com/photo-1584917865442-de89df76afd3?q=80&w=1200&auto=format&fit=crop'>
+        <div class='content'>
+        <h3>Aldo Bag</h3>
+        <p><span class='old'>₹35000</span> <span class='new'>₹15000</span></p>
+        <p>Premium Aldo designer luxury bag.</p>
+        <p class='offer'>15% OFF on Prepaid Orders</p>
+        <button>Add To Cart</button>
+        </div></div>
+        </div></section>
 
-</header>
-
-<div class="hero">
-
-<div class="hero-content">
-<h1>Welcome To <span>ToyTopia</span></h1>
-<p>Premium Anime • Luxury Watches • Designer Bags • Cool Gadgets</p>
-<button onclick="document.getElementById('anime').scrollIntoView()">Shop Now</button>
+<div class='checkout'>
+<h2>Cash On Delivery Order</h2>
+<input type='text' placeholder='Full Name'>
+<input type='email' placeholder='Email Address'>
+<input type='tel' placeholder='Phone Number'>
+<textarea rows='5' placeholder='Delivery Address'></textarea>
+<input type='text' placeholder='Product Name'>
+<button class='submit'>Place Order</button>
 </div>
-
-</div>
-
-<!-- Anime -->
-
-<section id="anime">
-
-<h1 class="section-title">Anime Collection</h1>
-
-<div class="products">
-
-<div class="card">
-<img src="https://images.unsplash.com/photo-1608889175123-8ee362201f81?q=80&w=1974&auto=format&fit=crop">
-<div class="card-content">
-<h3>Anime Keychain</h3>
-<div class="price">
-<div class="old">₹200</div>
-<div class="new">₹150</div>
-</div>
-<p class="desc">Cute anime keychain perfect for anime lovers.</p>
-<div class="buttons">
-<button class="add">Add</button>
-<button class="buy">Buy</button>
-</div>
-<div class="cod">Cash On Delivery Available</div>
-</div>
-</div>
-
-<div class="card">
-<img src="https://images.unsplash.com/photo-1578632767115-351597cf2477?q=80&w=1974&auto=format&fit=crop">
-<div class="card-content">
-<h3>Anime Figure</h3>
-<div class="price">
-<div class="old">₹1200</div>
-<div class="new">₹799</div>
-</div>
-<p class="desc">Premium anime collectible figure.</p>
-<div class="buttons">
-<button class="add">Add</button>
-<button class="buy">Buy</button>
-</div>
-<div class="cod">Cash On Delivery Available</div>
-</div>
-</div>
-
-</div>
-
-</section>
-
-<!-- Gadgets -->
-
-<section id="gadgets">
-
-<h1 class="section-title">Gadgets</h1>
-
-<div class="products">
-
-<div class="card">
-<img src="https://images.unsplash.com/photo-1585386959984-a41552231658?q=80&w=1974&auto=format&fit=crop">
-<div class="card-content">
-<h3>RGB Speaker</h3>
-<div class="price">
-<div class="old">₹2500</div>
-<div class="new">₹1599</div>
-</div>
-<p class="desc">Portable RGB speaker with bass sound.</p>
-<div class="buttons">
-<button class="add">Add</button>
-<button class="buy">Buy</button>
-</div>
-<div class="cod">Cash On Delivery Available</div>
-</div>
-</div>
-
-<div class="card">
-<img src="https://images.unsplash.com/photo-1546435770-a3e426bf472b?q=80&w=1974&auto=format&fit=crop">
-<div class="card-content">
-<h3>AirPods Max</h3>
-<div class="price">
-<div class="old">₹4000</div>
-<div class="new">₹2500</div>
-</div>
-<p class="desc">Luxury wireless headphones with premium look.</p>
-<div class="buttons">
-<button class="add">Add</button>
-<button class="buy">Buy</button>
-</div>
-<div class="cod">Cash On Delivery Available</div>
-</div>
-</div>
-
-</div>
-
-</section>
-
-<!-- Watches -->
-
-<section id="watches">
-
-<h1 class="section-title">Luxury Watches</h1>
-
-<div class="products">
-
-<div class="card">
-<img src="https://images.unsplash.com/photo-1547996160-81dfa63595aa?q=80&w=1974&auto=format&fit=crop">
-<div class="card-content">
-<h3>Rolex Watch</h3>
-<div class="price">
-<div class="old">₹5000</div>
-<div class="new">₹2000</div>
-</div>
-<p class="desc">Premium luxury watch with elegant design.</p>
-<div class="buttons">
-<button class="add">Add</button>
-<button class="buy">Buy</button>
-</div>
-<div class="cod">₹1400 Extra For Original Box</div>
-</div>
-</div>
-
-<div class="card">
-<img src="https://images.unsplash.com/photo-1523170335258-f5ed11844a49?q=80&w=1974&auto=format&fit=crop">
-<div class="card-content">
-<h3>Omega Watch</h3>
-<div class="price">
-<div class="old">₹5000</div>
-<div class="new">₹2599</div>
-</div>
-<p class="desc">Stylish premium Omega inspired watch.</p>
-<div class="buttons">
-<button class="add">Add</button>
-<button class="buy">Buy</button>
-</div>
-<div class="cod">₹1400 Extra For Original Box</div>
-</div>
-</div>
-
-</div>
-
-</section>
-
-<!-- Bags -->
-
-<section id="bags">
-
-<h1 class="section-title">Designer Bags</h1>
-
-<div class="products">
-
-<div class="card">
-<img src="https://images.unsplash.com/photo-1584917865442-de89df76afd3?q=80&w=1974&auto=format&fit=crop">
-<div class="card-content">
-<h3>Luxury Gucci Bag</h3>
-<div class="price">
-<div class="old">₹5000</div>
-<div class="new">₹3199</div>
-</div>
-<p class="desc">Beautiful premium handbag for stylish look.</p>
-<div class="buttons">
-<button class="add">Add</button>
-<button class="buy">Buy</button>
-</div>
-<div class="cod">₹1400 Extra For Original Box</div>
-</div>
-</div>
-
-<div class="card">
-<img src="https://images.unsplash.com/photo-1594223274512-ad4803739b7c?q=80&w=1974&auto=format&fit=crop">
-<div class="card-content">
-<h3>LV Bag</h3>
-<div class="price">
-<div class="old">₹5000</div>
-<div class="new">₹3799</div>
-</div>
-<p class="desc">Premium designer handbag with elegant finish.</p>
-<div class="buttons">
-<button class="add">Add</button>
-<button class="buy">Buy</button>
-</div>
-<div class="cod">₹1400 Extra For Original Box</div>
-</div>
-</div>
-
-</div>
-
-</section>
-
-<!-- Order -->
-
-<section id="order">
-
-<div class="order-box">
-
-<h2>Place Your Order</h2>
-
-<div class="input-group">
-<input type="text" placeholder="Full Name">
-</div>
-
-<div class="input-group">
-<input type="email" placeholder="Email Address">
-</div>
-
-<div class="input-group">
-<input type="text" placeholder="Phone Number">
-</div>
-
-<div class="input-group">
-<textarea rows="5" placeholder="Your Address"></textarea>
-</div>
-
-<div class="input-group">
-<input type="text" placeholder="Product Name">
-</div>
-
-<button class="submit-btn">Place COD Order</button>
-
-</div>
-
-</section>
 
 <footer>
-© 2026 ToyTopia — All Rights Reserved
+<h2>ToyTopia</h2>
+<p>Premium Luxury Marketplace</p>
 </footer>
-
-<a class="whatsapp" href="tel:+919999999999">📞</a>
 
 </body>
 </html>
